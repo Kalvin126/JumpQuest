@@ -10,13 +10,43 @@ import SpriteKit
 
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+    
+        let path = NSBundle.mainBundle().pathForResource("101000100", ofType: "txt")
+        let mapData = NSData(contentsOfFile: path!)
         
-        self.addChild(myLabel)
+        do {
+            let jsonResult = try NSJSONSerialization.JSONObjectWithData(mapData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+            let mapElements = jsonResult.valueForKey("imgdir")?.valueForKey("imgdir") as! NSArray
+            
+            for e in mapElements {
+                if e is NSDictionary{
+                    if e.valueForKey("-name") as! String == "5" {
+                        var cords = e.valueForKey("imgdir") as! NSArray
+                        cords = cords[1].valueForKey("imgdir") as! NSArray
+                        
+                        for n in cords {
+                            if n is NSDictionary{
+                                let intVals = n.valueForKey("int") as! NSArray
+                                let x = Int(intVals[0].valueForKey("-value") as! String)
+                                let y = Int(intVals[1].valueForKey("-value") as! String)
+                                let no = intVals[2].valueForKey("-value") as! String
+                                let u = n.valueForKey("string")!.valueForKey("-value") as! String
+                                
+                                let spriteTextureName:String = u + "." + no
+                                
+                                let sprite = SKSpriteNode(imageNamed: spriteTextureName)
+                                sprite.position = CGPointMake(CGFloat(x!), CGFloat(y!))
+                                sprite.setScale(1)
+                                
+                                self.addChild(sprite)
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            
+        }
     }
     
     override func mouseDown(theEvent: NSEvent) {
@@ -24,9 +54,8 @@ class GameScene: SKScene {
         
         let location = theEvent.locationInNode(self)
         
-        let sprite = SKSpriteNode(imageNamed:"Spaceship")
+        let sprite = SKSpriteNode(imageNamed:"edU.0")
         sprite.position = location;
-        sprite.setScale(0.5)
         
         let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         sprite.runAction(SKAction.repeatActionForever(action))
