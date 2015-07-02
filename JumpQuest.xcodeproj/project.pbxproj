@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		862D67BC1B43BDA60003EA8A /* 101000100.txt in Resources */ = {isa = PBXBuildFile; fileRef = 862D67BB1B43BDA60003EA8A /* 101000100.txt */; };
+		867121311B44B33300C4CB0D /* CameraActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 867121301B44B33300C4CB0D /* CameraActions.sks */; };
 		86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EA1B435E59003059D5 /* AppDelegate.swift */; };
 		86B6B8ED1B435E59003059D5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EC1B435E59003059D5 /* GameScene.swift */; };
 		86B6B8EF1B435E59003059D5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B6B8EE1B435E59003059D5 /* GameScene.sks */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		862D67BB1B43BDA60003EA8A /* 101000100.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 101000100.txt; sourceTree = "<group>"; };
+		867121301B44B33300C4CB0D /* CameraActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CameraActions.sks; path = ../CameraActions.sks; sourceTree = "<group>"; };
 		86B6B8E71B435E59003059D5 /* JumpQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B6B8EA1B435E59003059D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B6B8EC1B435E59003059D5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				86B6B8EE1B435E59003059D5 /* GameScene.sks */,
+				867121301B44B33300C4CB0D /* CameraActions.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				86D42BFE1B439FC50058EE1D /* 101000100.xml in Resources */,
 				862D67BC1B43BDA60003EA8A /* 101000100.txt in Resources */,
 				86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */,
+				867121311B44B33300C4CB0D /* CameraActions.sks in Resources */,
 				86B6B8F41B435E59003059D5 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +284,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = JumpQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = redpanda.JumpQuest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -292,6 +297,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = JumpQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = redpanda.JumpQuest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
