@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
     
-        let path = NSBundle.mainBundle().pathForResource("101000100", ofType: "txt")
+        let path = NSBundle.mainBundle().pathForResource("101000101", ofType: "txt")
         let mapData = NSData(contentsOfFile: path!)
         
         do {
@@ -22,7 +22,7 @@ class GameScene: SKScene {
                 if e is NSDictionary{
                     let section = e.valueForKey("-name") as! String
                     
-                    if section == "5" || section == "1" || section == "2" || section == "3"  {
+                    if section == "0" || section == "1" || section == "3"  {
                         var cords = e.valueForKey("imgdir") as! NSArray
                         cords = cords[1].valueForKey("imgdir") as! NSArray
                         
@@ -39,7 +39,7 @@ class GameScene: SKScene {
                                 
                                 let sprite = SKSpriteNode(imageNamed: spriteTextureName)
                                 //sprite.anchorPoint = CGPointMake(0.6, -0.7)
-                                sprite.position = CGPointMake(CGFloat(x!), CGFloat(y!))
+                                sprite.position = CGPointMake(CGFloat(x!), CGFloat(-y!))
                                 sprite.zPosition = CGFloat(zM!)
                                 sprite.setScale(1)
                                 

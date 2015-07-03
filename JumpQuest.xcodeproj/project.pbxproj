@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862CED261B45E432007EA4F2 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED251B45E432007EA4F2 /* MapItem.swift */; };
+		862CED281B45E487007EA4F2 /* MapLayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED271B45E487007EA4F2 /* MapLayerObject.swift */; };
+		862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED291B45E494007EA4F2 /* MapTile.swift */; };
+		862CED2C1B45E4A5007EA4F2 /* MapTileDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */; };
+		862CED2F1B45E4D1007EA4F2 /* MapTileDesignPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */; };
+		862CED311B45E501007EA4F2 /* bsc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED301B45E501007EA4F2 /* bsc.swift */; };
+		862CED331B45E508007EA4F2 /* edD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED321B45E508007EA4F2 /* edD.swift */; };
+		862CED351B45E511007EA4F2 /* edU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED341B45E511007EA4F2 /* edU.swift */; };
+		862CED371B45E51D007EA4F2 /* enH0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED361B45E51D007EA4F2 /* enH0.swift */; };
+		862CED391B45E52A007EA4F2 /* enH1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED381B45E52A007EA4F2 /* enH1.swift */; };
+		862CED3B1B45E537007EA4F2 /* enV0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED3A1B45E537007EA4F2 /* enV0.swift */; };
+		862CED3D1B45E53D007EA4F2 /* enV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED3C1B45E53D007EA4F2 /* enV1.swift */; };
+		862CED3F1B45E545007EA4F2 /* slLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED3E1B45E545007EA4F2 /* slLD.swift */; };
+		862CED411B45E54A007EA4F2 /* slLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED401B45E54A007EA4F2 /* slLU.swift */; };
+		862CED431B45E556007EA4F2 /* slRD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED421B45E556007EA4F2 /* slRD.swift */; };
+		862CED451B45E55F007EA4F2 /* slRU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED441B45E55F007EA4F2 /* slRU.swift */; };
 		862D67BC1B43BDA60003EA8A /* 101000100.txt in Resources */ = {isa = PBXBuildFile; fileRef = 862D67BB1B43BDA60003EA8A /* 101000100.txt */; };
 		867121311B44B33300C4CB0D /* CameraActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 867121301B44B33300C4CB0D /* CameraActions.sks */; };
 		86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EA1B435E59003059D5 /* AppDelegate.swift */; };
@@ -17,9 +33,26 @@
 		86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86D42BF61B4361470058EE1D /* CharacterActions.sks */; };
 		86D42BF91B43668C0058EE1D /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D42BF81B43668C0058EE1D /* Character.swift */; };
 		86D42BFE1B439FC50058EE1D /* 101000100.xml in Resources */ = {isa = PBXBuildFile; fileRef = 86D42BFD1B439FC50058EE1D /* 101000100.xml */; };
+		86D51B541B45093600ED2C91 /* 101000101.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86D51B531B45093600ED2C91 /* 101000101.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		862CED251B45E432007EA4F2 /* MapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
+		862CED271B45E487007EA4F2 /* MapLayerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayerObject.swift; sourceTree = "<group>"; };
+		862CED291B45E494007EA4F2 /* MapTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTile.swift; sourceTree = "<group>"; };
+		862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTileDesign.swift; sourceTree = "<group>"; };
+		862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTileDesignPotential.swift; sourceTree = "<group>"; };
+		862CED301B45E501007EA4F2 /* bsc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bsc.swift; sourceTree = "<group>"; };
+		862CED321B45E508007EA4F2 /* edD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = edD.swift; sourceTree = "<group>"; };
+		862CED341B45E511007EA4F2 /* edU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = edU.swift; sourceTree = "<group>"; };
+		862CED361B45E51D007EA4F2 /* enH0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enH0.swift; sourceTree = "<group>"; };
+		862CED381B45E52A007EA4F2 /* enH1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enH1.swift; sourceTree = "<group>"; };
+		862CED3A1B45E537007EA4F2 /* enV0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enV0.swift; sourceTree = "<group>"; };
+		862CED3C1B45E53D007EA4F2 /* enV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enV1.swift; sourceTree = "<group>"; };
+		862CED3E1B45E545007EA4F2 /* slLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slLD.swift; sourceTree = "<group>"; };
+		862CED401B45E54A007EA4F2 /* slLU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slLU.swift; sourceTree = "<group>"; };
+		862CED421B45E556007EA4F2 /* slRD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slRD.swift; sourceTree = "<group>"; };
+		862CED441B45E55F007EA4F2 /* slRU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slRU.swift; sourceTree = "<group>"; };
 		862D67BB1B43BDA60003EA8A /* 101000100.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 101000100.txt; sourceTree = "<group>"; };
 		867121301B44B33300C4CB0D /* CameraActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CameraActions.sks; path = ../CameraActions.sks; sourceTree = "<group>"; };
 		86B6B8E71B435E59003059D5 /* JumpQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +65,7 @@
 		86D42BF61B4361470058EE1D /* CharacterActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CharacterActions.sks; path = ../CharacterActions.sks; sourceTree = "<group>"; };
 		86D42BF81B43668C0058EE1D /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		86D42BFD1B439FC50058EE1D /* 101000100.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 101000100.xml; sourceTree = "<group>"; };
+		86D51B531B45093600ED2C91 /* 101000101.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 101000101.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +79,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		862CED231B45E3CE007EA4F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				862CED2D1B45E4BA007EA4F2 /* DesignPotentials */,
+				862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */,
+				862CED251B45E432007EA4F2 /* MapItem.swift */,
+				862CED271B45E487007EA4F2 /* MapLayerObject.swift */,
+				862CED291B45E494007EA4F2 /* MapTile.swift */,
+				862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		862CED2D1B45E4BA007EA4F2 /* DesignPotentials */ = {
+			isa = PBXGroup;
+			children = (
+				862CED301B45E501007EA4F2 /* bsc.swift */,
+				862CED321B45E508007EA4F2 /* edD.swift */,
+				862CED341B45E511007EA4F2 /* edU.swift */,
+				862CED361B45E51D007EA4F2 /* enH0.swift */,
+				862CED381B45E52A007EA4F2 /* enH1.swift */,
+				862CED3A1B45E537007EA4F2 /* enV0.swift */,
+				862CED3C1B45E53D007EA4F2 /* enV1.swift */,
+				862CED3E1B45E545007EA4F2 /* slLD.swift */,
+				862CED401B45E54A007EA4F2 /* slLU.swift */,
+				862CED421B45E556007EA4F2 /* slRD.swift */,
+				862CED441B45E55F007EA4F2 /* slRU.swift */,
+			);
+			name = DesignPotentials;
+			sourceTree = "<group>";
+		};
+		862CED461B45E5E2007EA4F2 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				862D67BB1B43BDA60003EA8A /* 101000100.txt */,
+				86D51B531B45093600ED2C91 /* 101000101.txt */,
+				86D42BFD1B439FC50058EE1D /* 101000100.xml */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		86B6B8DE1B435E59003059D5 = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +171,9 @@
 		86D42BFF1B439FD30058EE1D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				862CED461B45E5E2007EA4F2 /* Maps */,
+				862CED231B45E3CE007EA4F2 /* Model */,
 				86B6B8F01B435E59003059D5 /* Assets.xcassets */,
-				862D67BB1B43BDA60003EA8A /* 101000100.txt */,
-				86D42BFD1B439FC50058EE1D /* 101000100.xml */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -167,6 +242,7 @@
 				86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */,
 				867121311B44B33300C4CB0D /* CameraActions.sks in Resources */,
 				86B6B8F41B435E59003059D5 /* MainMenu.xib in Resources */,
+				86D51B541B45093600ED2C91 /* 101000101.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +253,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				862CED351B45E511007EA4F2 /* edU.swift in Sources */,
+				862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */,
+				862CED281B45E487007EA4F2 /* MapLayerObject.swift in Sources */,
+				862CED311B45E501007EA4F2 /* bsc.swift in Sources */,
+				862CED411B45E54A007EA4F2 /* slLU.swift in Sources */,
+				862CED3F1B45E545007EA4F2 /* slLD.swift in Sources */,
+				862CED391B45E52A007EA4F2 /* enH1.swift in Sources */,
+				862CED331B45E508007EA4F2 /* edD.swift in Sources */,
+				862CED431B45E556007EA4F2 /* slRD.swift in Sources */,
+				862CED2F1B45E4D1007EA4F2 /* MapTileDesignPotential.swift in Sources */,
+				862CED451B45E55F007EA4F2 /* slRU.swift in Sources */,
+				862CED3D1B45E53D007EA4F2 /* enV1.swift in Sources */,
 				86D42BF91B43668C0058EE1D /* Character.swift in Sources */,
+				862CED2C1B45E4A5007EA4F2 /* MapTileDesign.swift in Sources */,
+				862CED371B45E51D007EA4F2 /* enH0.swift in Sources */,
+				862CED3B1B45E537007EA4F2 /* enV0.swift in Sources */,
+				862CED261B45E432007EA4F2 /* MapItem.swift in Sources */,
 				86B6B8ED1B435E59003059D5 /* GameScene.swift in Sources */,
 				86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */,
 			);
