@@ -11,8 +11,9 @@ import Foundation
 class bsc : MapTileDesign {
     
     override init(){
-        type = "bsc"
+        super.init()
         
+        type = "bsc"
         setImage()
         
         potentials.append( MapTileDesignPotential(type: "bsc", x: -90,   y: 0) )

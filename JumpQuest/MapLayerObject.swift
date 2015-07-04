@@ -8,6 +8,15 @@
 
 import Foundation
 
-class MapLayerObject {
+class MapLayerObject : MapItem {
+    
+    var lastKnown:(x:Int, y:Int)?
+    var x2:Int?
+    var y2:Int?
+    var size:(height:Int, width:Int)?    // this should be protected..
+    var cached:Bool? = false
+    
+    override init(){
+    }
     
 }

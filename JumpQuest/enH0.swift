@@ -11,24 +11,25 @@ import Foundation
 class enH0 : MapTileDesign {
     
     override init(){
-        type = "enH0"
+        super.init()
         
+        type = "enH0"
         setImage()
         
-        potentials.append( MapTileDesignPotential("bsc", 0, 0) )
-        potentials.append( MapTileDesignPotential("enH0", -90, 0) )
-        potentials.append( MapTileDesignPotential("enH0", 90, 0) )
-        potentials.append( MapTileDesignPotential("enH1", 0, 0) )
-        potentials.append( MapTileDesignPotential("edU", 0, 0) )
-        potentials.append( MapTileDesignPotential("edU", 90, 0) )
-        potentials.append( MapTileDesignPotential("enV0", 90, -60) )
-        potentials.append( MapTileDesignPotential("enV1", 0, -60) )
-        potentials.append( MapTileDesignPotential("slLU", 0, 60) )
-        potentials.append( MapTileDesignPotential("slLU", 180, 0) )
-        potentials.append( MapTileDesignPotential("slRU", 90, 60) )
-        potentials.append( MapTileDesignPotential("slRU", -90, 0) )
-        potentials.append( MapTileDesignPotential("slLD", 90, 0) )
-        potentials.append( MapTileDesignPotential("slRD", 0, 0) )
+        potentials.append( MapTileDesignPotential(type: "bsc", x: 0, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "enH0", x: -90, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "enH0", x: 90, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "enH1", x: 0, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "edU", x: 0, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "edU", x: 90, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "enV0", x: 90, y: -60) )
+        potentials.append( MapTileDesignPotential(type: "enV1", x: 0, y: -60) )
+        potentials.append( MapTileDesignPotential(type: "slLU", x: 0, y: 60) )
+        potentials.append( MapTileDesignPotential(type: "slLU", x: 180, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "slRU", x: 90, y: 60) )
+        potentials.append( MapTileDesignPotential(type: "slRU", x: -90, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "slLD", x: 90, y: 0) )
+        potentials.append( MapTileDesignPotential(type: "slRD", x:0, y:0) )
     }
     
 }

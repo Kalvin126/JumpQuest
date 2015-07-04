@@ -26,5 +26,4 @@ class edD : MapTileDesign {
         potentials.append( MapTileDesignPotential(type: "slRD", x: -90, y: 0) )
         potentials.append( MapTileDesignPotential(type: "slRD", x: 0, y: -60) )
     }
-    
 }

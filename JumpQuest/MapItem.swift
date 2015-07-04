@@ -10,4 +10,12 @@ import Foundation
 
 class MapItem {
     
+    var ID:Int?
+    var object:NSDictionary?
+    var image:NSDictionary?
+    var selected:Bool?
+    var transparency:Int = 99
+    
+    init(){
+    }
 }

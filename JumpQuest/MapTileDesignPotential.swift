@@ -10,9 +10,12 @@ import Foundation
 
 class MapTileDesignPotential {
     
-    let type:String
-    let x:Int
-    let y:Int
+    var type:String?
+    var x:Int?
+    var y:Int?
+    
+    init(){
+    }
     
     init(type:String, x:Int, y:Int){
         self.type = type
@@ -21,8 +24,7 @@ class MapTileDesignPotential {
     }
     
     func IsMatch(type:String, x:Int, y:Int, multi:Int) -> Bool {
-        //return this.type == type && MapFoothold.Distance(this.x * multi, this.y * multi, x, y) <= 15
-        return 0
+        //return self.type == type && (MapFoothold.distance(x1:self.x * multi, y1:self.y * multi, x2:x, y2:y) <= 15)
+        return false
     }
-    
 }
