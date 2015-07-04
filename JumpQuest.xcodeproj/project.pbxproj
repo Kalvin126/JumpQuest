@@ -92,13 +92,13 @@
 			children = (
 				862CED4B1B474434007EA4F2 /* Foothold */,
 				862CED2D1B45E4BA007EA4F2 /* DesignPotentials */,
+				862CED491B46717E007EA4F2 /* Map.swift */,
 				862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */,
 				862CED251B45E432007EA4F2 /* MapItem.swift */,
 				862CED271B45E487007EA4F2 /* MapLayerObject.swift */,
 				862CED291B45E494007EA4F2 /* MapTile.swift */,
 				862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */,
 				862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */,
-				862CED491B46717E007EA4F2 /* Map.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

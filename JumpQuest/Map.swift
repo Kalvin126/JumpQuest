@@ -122,6 +122,8 @@ class Map : NSObject, NSXMLParserDelegate {
     
     private var currentSection:String?
     private var currentItemID:String?
+    private var currentSubItemID:String?
+    private var currentSubSubItemID:String?
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         elementQueue.append(elementName)
@@ -201,11 +203,34 @@ class Map : NSObject, NSXMLParserDelegate {
             }
             else if currentSection == "reactor" {
                 print("section: \(currentSection)")
-                
             }
             else if currentSection == "foothold" {
-                print("section: \(currentSection)")
-                
+                if currentSubSubItemID != nil {
+                    if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
+                        switch attribute{
+                        case "x1":
+                            print("attribute: \(attribute) - \(value)")
+                        case "y1":
+                            print("attribute: \(attribute) - \(value)")
+                        case "x2":
+                            print("attribute: \(attribute) - \(value)")
+                        case "y2":
+                            print("attribute: \(attribute) - \(value)")
+                        case "prev":
+                            print("attribute: \(attribute) - \(value)")
+                        case "next":
+                            print("attribute: \(attribute) - \(value)")
+                        default:
+                            print("Unknown attribute: \(attributeDict)")
+                        }
+                    }
+                }else if currentSubItemID != nil {
+                    currentSubSubItemID = attributeDict["name"]
+                }else if currentItemID != nil {
+                    currentSubItemID = attributeDict["name"]
+                }else{
+                    currentItemID = attributeDict["name"]
+                }
             }
             else if currentSection == "ladderRope"{
                 if currentItemID != nil {
@@ -230,7 +255,6 @@ class Map : NSObject, NSXMLParserDelegate {
                 }else{
                     currentItemID = attributeDict["name"]
                 }
-                
             }
             else if currentSection == "miniMap" {
                 let baseData:String? = attributeDict["basedata"]
@@ -310,12 +334,72 @@ class Map : NSObject, NSXMLParserDelegate {
                 }
                 
             }
-            else{
-                if Int(currentSection!) != nil {
-                    print("section: \(currentSection)")
+            else if Int(currentSection!) != nil {
+                if currentSubItemID != nil {
+                    if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
+                        if currentSubItemID == "title" {
+                            switch attribute {
+                            case "x":
+                                print("attribute: \(attribute) - \(value)")
+                            case "y":
+                                print("attribute: \(attribute) - \(value)")
+                            case "u":
+                                print("attribute: \(attribute) - \(value)")
+                            case "no":
+                                print("attribute: \(attribute) - \(value)")
+                            case "zM":
+                                print("attribute: \(attribute) - \(value)")
+                            default:
+                                print("Unknown attribute: \(attributeDict)")
+                            }
+                        }else if currentSubItemID == "obj" {
+                            switch attribute {
+                            case "oS":
+                                print("attribute: \(attribute) - \(value)")
+                            case "l0":
+                                print("attribute: \(attribute) - \(value)")
+                            case "l1":
+                                print("attribute: \(attribute) - \(value)")
+                            case "l2":
+                                print("attribute: \(attribute) - \(value)")
+                            case "x":
+                                print("attribute: \(attribute) - \(value)")
+                            case "y":
+                                print("attribute: \(attribute) - \(value)")
+                            case "z":
+                                print("attribute: \(attribute) - \(value)")
+                            case "zM":
+                                print("attribute: \(attribute) - \(value)")
+                            default:
+                                print("Unknown attribute: \(attributeDict)")
+                            }
+                        }
+                    }
+                }else if currentItemID != nil {
+                    if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
+                        switch currentItemID!{
+                        case "info":
+                            if attribute == "tS" {
+                                // = value
+                            }
+                        case "title", "obj":
+                            currentSubItemID = attribute
+                        default:
+                            print("Unknown attribute: \(attributeDict)")
+                        }
+                    }
                 }else{
-                    print("Unknown section: \(currentSection)")
+                    currentItemID = attributeDict["name"]
                 }
+                
+                /* sub sections:
+                info
+                title
+                obj
+                */
+            }
+            else{
+                print("Unknown section: \(currentSection)")
             }
         }else{
             if elementQueue.count == 1 {
@@ -335,7 +419,11 @@ class Map : NSObject, NSXMLParserDelegate {
         }
         
         if elementQueue.last == "imgdir"{
-            if currentItemID != nil {
+            if currentSubSubItemID != nil {
+                currentSubSubItemID = nil
+            }else if currentSubItemID != nil {
+                currentSubItemID = nil
+            }else if currentItemID != nil {
                 currentItemID = nil
             }else if currentSection != nil {
                 currentSection = nil
