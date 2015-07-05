@@ -16,14 +16,14 @@ class edD : MapTileDesign {
         type = "edD"
         setImage()
         
-        potentials.append( MapTileDesignPotential(type: "enH1", x: -90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enH1", x: 0, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enV0", x: 0, y: -60) )
-        potentials.append( MapTileDesignPotential(type: "enV1", x: 0, y: -60) )
-        potentials.append( MapTileDesignPotential(type: "edU", x: 0, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slLD", x: 90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slLD", x: 0, y: -60) )
-        potentials.append( MapTileDesignPotential(type: "slRD", x: -90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slRD", x: 0, y: -60) )
+        potentials += [ MapTileDesignPotential(type: "enH1", x: -90, y: 0),
+                        MapTileDesignPotential(type: "enH1", x: 0, y: 0),
+                        MapTileDesignPotential(type: "enV0", x: 0, y: -60),
+                        MapTileDesignPotential(type: "enV1", x: 0, y: -60),
+                        MapTileDesignPotential(type: "edU", x: 0, y: 0),
+                        MapTileDesignPotential(type: "slLD", x: 90, y: 0),
+                        MapTileDesignPotential(type: "slLD", x: 0, y: -60),
+                        MapTileDesignPotential(type: "slRD", x: -90, y: 0),
+                        MapTileDesignPotential(type: "slRD", x: 0, y: -60)]
     }
 }

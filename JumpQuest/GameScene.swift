@@ -11,7 +11,13 @@ import SpriteKit
 class GameScene: SKScene, NSXMLParserDelegate {
     override func didMoveToView(view: SKView) {
         let mainMap = Map()
+        
+        self.children
     }
+    
+//    func createBackgroundNode() ->SKNode {
+//        
+//    }
     
     override func mouseDown(theEvent: NSEvent) {
         /* Called when a mouse click occurs */

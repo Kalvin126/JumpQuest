@@ -12,6 +12,7 @@ class Map : NSObject, NSXMLParserDelegate {
     
     var elementQueue:[String] = []
     
+    var mapID:Int?
     var version:Int?
     var cloud:Int?
     var town:Int?
@@ -35,89 +36,6 @@ class Map : NSObject, NSXMLParserDelegate {
         parser.delegate = self
         parser.parse()
         
-        /* Map structure:
-        back
-            #
-                bS (string)
-                no
-                x
-                y
-                rx
-                ry
-                type
-                cx
-                cy
-                a
-                front
-                ani
-                f
-        life
-            #
-                type (string)
-                id
-                x
-                y
-                mobTime
-                f
-                fh
-                cy
-                rx0
-                rx1
-        #
-            info
-            tile
-            obj
-            reactor ?
-        foothold
-            #
-                #
-                    #
-                        x1
-                        y2
-                        x2
-                        y2
-                        prev
-                        next
-        ladderRope
-            #
-                l
-                uf
-                x
-                y1
-                y2
-                page
-        miniMap
-            basedata?
-            height
-            name
-            width
-                width
-                height
-                centerX
-                centerY
-                mag
-        portal
-            #
-                name (string)
-                pt
-                x
-                y
-                tm
-                tno (string)
-        info
-            version
-            cloud
-            town
-            returnMap
-            mobRate
-            bgm (string)
-            mapDesc
-            hideMinimap
-            forcedReturn
-            fieldLimit
-            mapMark (string)
-            swim
-        */
     }
     
     private var currentSection:String?
@@ -133,32 +51,32 @@ class Map : NSObject, NSXMLParserDelegate {
                 if currentItemID != nil {
                     if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
                         switch attribute{
-                            case "bS":
-                                print("attribute: \(attribute) - \(value)")
-                            case "no":
-                                print("attribute: \(attribute) - \(value)")
-                            case "x":
-                                print("attribute: \(attribute) - \(value)")
-                            case "y":
-                                print("attribute: \(attribute) - \(value)")
-                            case "rx":
-                                print("attribute: \(attribute) - \(value)")
-                            case "ry":
-                                print("attribute: \(attribute) - \(value)")
-                            case "type":
-                                print("attribute: \(attribute) - \(value)")
-                            case "cx":
-                                print("attribute: \(attribute) - \(value)")
-                            case "cy":
-                                print("attribute: \(attribute) - \(value)")
-                            case "a":
-                                print("attribute: \(attribute) - \(value)")
-                            case "front":
-                                print("attribute: \(attribute) - \(value)")
-                            case "ani":
-                                print("attribute: \(attribute) - \(value)")
-                            case "f":
-                                print("attribute: \(attribute) - \(value)")
+                        case "bS":
+                            print("attribute: \(attribute) - \(value)")
+                        case "no":
+                            print("attribute: \(attribute) - \(value)")
+                        case "x":
+                            print("attribute: \(attribute) - \(value)")
+                        case "y":
+                            print("attribute: \(attribute) - \(value)")
+                        case "rx":
+                            print("attribute: \(attribute) - \(value)")
+                        case "ry":
+                            print("attribute: \(attribute) - \(value)")
+                        case "type":
+                            print("attribute: \(attribute) - \(value)")
+                        case "cx":
+                            print("attribute: \(attribute) - \(value)")
+                        case "cy":
+                            print("attribute: \(attribute) - \(value)")
+                        case "a":
+                            print("attribute: \(attribute) - \(value)")
+                        case "front":
+                            print("attribute: \(attribute) - \(value)")
+                        case "ani":
+                            print("attribute: \(attribute) - \(value)")
+                        case "f":
+                            print("attribute: \(attribute) - \(value)")
                         default:
                             print("Unknown attribute: \(attributeDict)")
                         }
@@ -304,40 +222,40 @@ class Map : NSObject, NSXMLParserDelegate {
             else if currentSection == "info" {
                 if let attribute:String = attributeDict["name"], value:String = attributeDict["value"] {
                     switch attribute {
-                        case "version":
-                            version = Int(value)
-                        case "cloud":
-                            cloud = Int(value)
-                        case "town":
-                            town = Int(value)
-                        case "returnMap":
-                            returnMap = Int(value)
-                        case "mobRate":
-                            mobRate = Float(value)
-                        case "bgm":
-                            bgm = value
-                        case "mapDesc":
-                            mapDesc = value
-                        case "hideMinimap":
-                            hideMinimap = Int(value)
-                        case "forcedReturn":
-                            forcedReturn = Int(value)
-                        case "fieldLimit":
-                            fieldLimit = Int(value)
-                        case "mapMark":
-                            mapMark = value
-                        case "swim":
-                            swim = Int(value)
-                        default:
-                            print("Unknown attribute: \(attributeDict)")
+                    case "version":
+                        version = Int(value)
+                    case "cloud":
+                        cloud = Int(value)
+                    case "town":
+                        town = Int(value)
+                    case "returnMap":
+                        returnMap = Int(value)
+                    case "mobRate":
+                        mobRate = Float(value)
+                    case "bgm":
+                        bgm = value
+                    case "mapDesc":
+                        mapDesc = value
+                    case "hideMinimap":
+                        hideMinimap = Int(value)
+                    case "forcedReturn":
+                        forcedReturn = Int(value)
+                    case "fieldLimit":
+                        fieldLimit = Int(value)
+                    case "mapMark":
+                        mapMark = value
+                    case "swim":
+                        swim = Int(value)
+                    default:
+                        print("Unknown attribute: \(attributeDict)")
                     }
                 }
                 
             }
-            else if Int(currentSection!) != nil {
+            else if Int(currentSection!) != nil {           // Tile section
                 if currentSubItemID != nil {
                     if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
-                        if currentSubItemID == "title" {
+                        if currentItemID == "tile" {
                             switch attribute {
                             case "x":
                                 print("attribute: \(attribute) - \(value)")
@@ -352,7 +270,7 @@ class Map : NSObject, NSXMLParserDelegate {
                             default:
                                 print("Unknown attribute: \(attributeDict)")
                             }
-                        }else if currentSubItemID == "obj" {
+                        }else if currentItemID == "obj" {
                             switch attribute {
                             case "oS":
                                 print("attribute: \(attribute) - \(value)")
@@ -368,6 +286,8 @@ class Map : NSObject, NSXMLParserDelegate {
                                 print("attribute: \(attribute) - \(value)")
                             case "z":
                                 print("attribute: \(attribute) - \(value)")
+                            case "f":
+                                print("attribute: \(attribute) - \(value)")
                             case "zM":
                                 print("attribute: \(attribute) - \(value)")
                             default:
@@ -376,13 +296,13 @@ class Map : NSObject, NSXMLParserDelegate {
                         }
                     }
                 }else if currentItemID != nil {
-                    if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
+                    if let attribute:String = attributeDict["name"], value:String? = attributeDict["value"]{
                         switch currentItemID!{
                         case "info":
                             if attribute == "tS" {
                                 // = value
                             }
-                        case "title", "obj":
+                        case "tile", "obj":
                             currentSubItemID = attribute
                         default:
                             print("Unknown attribute: \(attributeDict)")
@@ -391,12 +311,6 @@ class Map : NSObject, NSXMLParserDelegate {
                 }else{
                     currentItemID = attributeDict["name"]
                 }
-                
-                /* sub sections:
-                info
-                title
-                obj
-                */
             }
             else{
                 print("Unknown section: \(currentSection)")
@@ -405,6 +319,7 @@ class Map : NSObject, NSXMLParserDelegate {
             if elementQueue.count == 1 {
                 if let mapID = attributeDict["name"] {
                     print("mapID: \(mapID)")
+                    self.mapID = Int(mapID)
                 }
             }else if elementQueue.count == 2 {
                 let section:String = attributeDict["name"]!
@@ -413,7 +328,7 @@ class Map : NSObject, NSXMLParserDelegate {
         }
     }
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        guard elementQueue.last != elementName else {
+        guard elementQueue.last == elementName else {
             print("error last element not the ending Element")
             return
         }
@@ -431,6 +346,10 @@ class Map : NSObject, NSXMLParserDelegate {
         }
         
         elementQueue.removeLast()
+        
+        if elementQueue.count == 0 {
+            print("DONE: XMLParse of MapID: \(mapID)")
+        }
     }
 
 }

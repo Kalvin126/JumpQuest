@@ -16,20 +16,20 @@ class enH0 : MapTileDesign {
         type = "enH0"
         setImage()
         
-        potentials.append( MapTileDesignPotential(type: "bsc", x: 0, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enH0", x: -90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enH0", x: 90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enH1", x: 0, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "edU", x: 0, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "edU", x: 90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "enV0", x: 90, y: -60) )
-        potentials.append( MapTileDesignPotential(type: "enV1", x: 0, y: -60) )
-        potentials.append( MapTileDesignPotential(type: "slLU", x: 0, y: 60) )
-        potentials.append( MapTileDesignPotential(type: "slLU", x: 180, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slRU", x: 90, y: 60) )
-        potentials.append( MapTileDesignPotential(type: "slRU", x: -90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slLD", x: 90, y: 0) )
-        potentials.append( MapTileDesignPotential(type: "slRD", x:0, y:0) )
+        potentials += [ MapTileDesignPotential(type: "bsc", x: 0, y: 0),
+                        MapTileDesignPotential(type: "enH0", x: -90, y: 0),
+                        MapTileDesignPotential(type: "enH0", x: 90, y: 0),
+                        MapTileDesignPotential(type: "enH1", x: 0, y: 0),
+                        MapTileDesignPotential(type: "edU", x: 0, y: 0),
+                        MapTileDesignPotential(type: "edU", x: 90, y: 0),
+                        MapTileDesignPotential(type: "enV0", x: 90, y: -60),
+                        MapTileDesignPotential(type: "enV1", x: 0, y: -60),
+                        MapTileDesignPotential(type: "slLU", x: 0, y: 60),
+                        MapTileDesignPotential(type: "slLU", x: 180, y: 0),
+                        MapTileDesignPotential(type: "slRU", x: 90, y: 60),
+                        MapTileDesignPotential(type: "slRU", x: -90, y: 0),
+                        MapTileDesignPotential(type: "slLD", x: 90, y: 0),
+                        MapTileDesignPotential(type: "slRD", x:0, y:0)]
     }
     
 }

@@ -160,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				86B6B8EA1B435E59003059D5 /* AppDelegate.swift */,
-				86B6B8EC1B435E59003059D5 /* GameScene.swift */,
 				86D42BFA1B4366990058EE1D /* Nodes */,
 				86B6B8FB1B435F89003059D5 /* Scenes */,
 				86D42BFF1B439FD30058EE1D /* Resources */,
@@ -173,6 +172,7 @@
 		86B6B8FB1B435F89003059D5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				86B6B8EC1B435E59003059D5 /* GameScene.swift */,
 				86B6B8EE1B435E59003059D5 /* GameScene.sks */,
 				867121301B44B33300C4CB0D /* CameraActions.sks */,
 			);
