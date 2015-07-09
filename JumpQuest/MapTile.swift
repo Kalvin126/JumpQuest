@@ -8,16 +8,18 @@
 
 import Foundation
 
-class MapTile : MapLayerObject {
+class MapTile : MapItem {
+    
+    var u:String?
+    var no:Int?
+    var zM:Int?
     
     var design:MapTileDesign?
     var footholds:[MapFootHoldDesign]?
     
-    var magnetX:Int?
-    var magnetY:Int?
-    var magnet:Bool?
-    
-    override init(){
+    override init(ID:Int){
+        
+        super.init(ID: ID)
     }
     
 //    func createFootholddesignList(){
@@ -31,7 +33,7 @@ class MapTile : MapLayerObject {
 //        }
 //    }
     
-    func setdesign(type:String){
+    func setDesign(type:String){
         switch (type){
             case "bsc":     design = bsc()
             case "enH0":    design = enH0()
@@ -47,7 +49,6 @@ class MapTile : MapLayerObject {
             default:
                 return
         }
-        
-        design!.object = object
+        design?.parent = self
     }
 }

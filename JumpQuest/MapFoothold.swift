@@ -14,8 +14,8 @@ class MapFoothold : MapItem {
     //var s1/s2:MapFootholdSide?
     var group:MapFootHolds?
     
-    init(ID:Int){
-        
+    override init(ID:Int){
+        super.init(ID: ID)
     }
     
     func distance(x1:Double, y1:Double, x2:Double, y2:Double) -> Double{

@@ -26,7 +26,13 @@ class Map : NSObject, NSXMLParserDelegate {
     var mapMark:String?
     var swim:Int?
     
+    var miniMap:MapMiniMap?
+    var tiles:[MapTile]
+    
     override init(){
+        miniMap = MapMiniMap()
+        tiles = []
+        
         super.init()
         
         let path = NSBundle.mainBundle().pathForResource("101000100", ofType: "xml")
@@ -42,6 +48,7 @@ class Map : NSObject, NSXMLParserDelegate {
     private var currentItemID:String?
     private var currentSubItemID:String?
     private var currentSubSubItemID:String?
+    private var currentItemInstance:MapItem?
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         elementQueue.append(elementName)
@@ -176,22 +183,24 @@ class Map : NSObject, NSXMLParserDelegate {
             }
             else if currentSection == "miniMap" {
                 let baseData:String? = attributeDict["basedata"]
-                let height:String? = attributeDict["height"]
-                let width:String? = attributeDict["width"]
-                let centerX:String? = attributeDict["centerX"]
-                let centerY:String? = attributeDict["centerY"]
-                let mag:String? = attributeDict["mag"]
+                let value:String? = attributeDict["value"]
                 
-//                switch attributeDict["name"]! {
-//                    case "canvas":
-//                    case "width":
-//                    case "height":
-//                    case "centerX":
-//                    case "centerY":
-//                    case "mag":
-//                    default:
-//                        print("Unknown attribute: \(attributeDict)")
-//                }
+                switch attributeDict["name"]! {
+                case "canvas":
+                    miniMap?.baseData = baseData
+                case "width":
+                    miniMap?.width = Int(value!)
+                case "height":
+                    miniMap?.height = Int(value!)
+                case "centerX":
+                    miniMap?.centerX = Int(value!)
+                case "centerY":
+                    miniMap?.centerY = Int(value!)
+                case "mag":
+                    miniMap?.mag = Int(value!)
+                default:
+                    print("Unknown attribute: \(attributeDict)")
+                }
                 
             }
             else if currentSection == "portal" {
@@ -258,15 +267,16 @@ class Map : NSObject, NSXMLParserDelegate {
                         if currentItemID == "tile" {
                             switch attribute {
                             case "x":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapTile).x = Int(value)
                             case "y":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapTile).y = Int(value)
                             case "u":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapTile).u = value
+                                (currentItemInstance as! MapTile).setDesign(value)
                             case "no":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapTile).no = Int(value)
                             case "zM":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapTile).zM = Int(value)
                             default:
                                 print("Unknown attribute: \(attributeDict)")
                             }
@@ -302,7 +312,11 @@ class Map : NSObject, NSXMLParserDelegate {
                             if attribute == "tS" {
                                 // = value
                             }
-                        case "tile", "obj":
+                        case "tile":
+                            currentSubItemID = attribute
+                            currentItemInstance = MapTile(ID:Int(currentSubItemID!)!)
+                            tiles += [currentItemInstance as! MapTile]
+                        case "obj":
                             currentSubItemID = attribute
                         default:
                             print("Unknown attribute: \(attributeDict)")
@@ -317,9 +331,9 @@ class Map : NSObject, NSXMLParserDelegate {
             }
         }else{
             if elementQueue.count == 1 {
-                if let mapID = attributeDict["name"] {
-                    print("mapID: \(mapID)")
-                    self.mapID = Int(mapID)
+                if let cMapID = attributeDict["name"] {
+                    print("mapID: \(cMapID)")
+                    self.mapID = Int(cMapID.substringWithRange(Range<String.Index>(start:cMapID.startIndex, end:advance(cMapID.endIndex, -4))))
                 }
             }else if elementQueue.count == 2 {
                 let section:String = attributeDict["name"]!
@@ -343,13 +357,30 @@ class Map : NSObject, NSXMLParserDelegate {
             }else if currentSection != nil {
                 currentSection = nil
             }
+            
+            currentItemInstance = nil
         }
         
         elementQueue.removeLast()
         
         if elementQueue.count == 0 {
-            print("DONE: XMLParse of MapID: \(mapID)")
+            print("DONE: XMLParse of MapID: \(mapID!)")
         }
+    }
+    
+    func getTileDesignPosition(tile:MapTile) -> (x:Int, y:Int)? {
+        var multi:Int? = miniMap?.mag
+        if multi == 0 {
+            multi = 1
+        }
+        
+        for t in tiles{
+            if let pos = t.design?.getMath(tile.u!, x: tile.x!, y: tile.y!, multi: multi!) {
+                return pos
+            }
+        }
+        
+        return nil
     }
 
 }

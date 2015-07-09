@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861EC9631B493D0C00725A4C /* MapMiniMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861EC9621B493D0C00725A4C /* MapMiniMap.swift */; };
 		862CED261B45E432007EA4F2 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED251B45E432007EA4F2 /* MapItem.swift */; };
-		862CED281B45E487007EA4F2 /* MapLayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED271B45E487007EA4F2 /* MapLayerObject.swift */; };
 		862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED291B45E494007EA4F2 /* MapTile.swift */; };
 		862CED2C1B45E4A5007EA4F2 /* MapTileDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */; };
 		862CED2F1B45E4D1007EA4F2 /* MapTileDesignPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */; };
@@ -27,8 +27,8 @@
 		862CED4A1B46717E007EA4F2 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED491B46717E007EA4F2 /* Map.swift */; };
 		862CED4D1B47445D007EA4F2 /* MapFoothold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED4C1B47445D007EA4F2 /* MapFoothold.swift */; };
 		862CED4F1B4747F4007EA4F2 /* MapFootholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED4E1B4747F4007EA4F2 /* MapFootholds.swift */; };
-		862D67BC1B43BDA60003EA8A /* 101000100.txt in Resources */ = {isa = PBXBuildFile; fileRef = 862D67BB1B43BDA60003EA8A /* 101000100.txt */; };
 		867121311B44B33300C4CB0D /* CameraActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 867121301B44B33300C4CB0D /* CameraActions.sks */; };
+		86B31B091B4930ED000EBE96 /* Character.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B31B081B4930ED000EBE96 /* Character.sks */; };
 		86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EA1B435E59003059D5 /* AppDelegate.swift */; };
 		86B6B8ED1B435E59003059D5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EC1B435E59003059D5 /* GameScene.swift */; };
 		86B6B8EF1B435E59003059D5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B6B8EE1B435E59003059D5 /* GameScene.sks */; };
@@ -37,12 +37,11 @@
 		86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86D42BF61B4361470058EE1D /* CharacterActions.sks */; };
 		86D42BF91B43668C0058EE1D /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D42BF81B43668C0058EE1D /* Character.swift */; };
 		86D42BFE1B439FC50058EE1D /* 101000100.xml in Resources */ = {isa = PBXBuildFile; fileRef = 86D42BFD1B439FC50058EE1D /* 101000100.xml */; };
-		86D51B541B45093600ED2C91 /* 101000101.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86D51B531B45093600ED2C91 /* 101000101.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		861EC9621B493D0C00725A4C /* MapMiniMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMiniMap.swift; sourceTree = "<group>"; };
 		862CED251B45E432007EA4F2 /* MapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
-		862CED271B45E487007EA4F2 /* MapLayerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayerObject.swift; sourceTree = "<group>"; };
 		862CED291B45E494007EA4F2 /* MapTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTile.swift; sourceTree = "<group>"; };
 		862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTileDesign.swift; sourceTree = "<group>"; };
 		862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTileDesignPotential.swift; sourceTree = "<group>"; };
@@ -61,8 +60,8 @@
 		862CED491B46717E007EA4F2 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		862CED4C1B47445D007EA4F2 /* MapFoothold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFoothold.swift; sourceTree = "<group>"; };
 		862CED4E1B4747F4007EA4F2 /* MapFootholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFootholds.swift; sourceTree = "<group>"; };
-		862D67BB1B43BDA60003EA8A /* 101000100.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 101000100.txt; sourceTree = "<group>"; };
 		867121301B44B33300C4CB0D /* CameraActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CameraActions.sks; path = ../CameraActions.sks; sourceTree = "<group>"; };
+		86B31B081B4930ED000EBE96 /* Character.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Character.sks; sourceTree = "<group>"; };
 		86B6B8E71B435E59003059D5 /* JumpQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B6B8EA1B435E59003059D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B6B8EC1B435E59003059D5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -73,7 +72,6 @@
 		86D42BF61B4361470058EE1D /* CharacterActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CharacterActions.sks; path = ../CharacterActions.sks; sourceTree = "<group>"; };
 		86D42BF81B43668C0058EE1D /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		86D42BFD1B439FC50058EE1D /* 101000100.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 101000100.xml; sourceTree = "<group>"; };
-		86D51B531B45093600ED2C91 /* 101000101.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 101000101.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,12 +91,12 @@
 				862CED4B1B474434007EA4F2 /* Foothold */,
 				862CED2D1B45E4BA007EA4F2 /* DesignPotentials */,
 				862CED491B46717E007EA4F2 /* Map.swift */,
-				862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */,
+				862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */,
 				862CED251B45E432007EA4F2 /* MapItem.swift */,
-				862CED271B45E487007EA4F2 /* MapLayerObject.swift */,
+				861EC9621B493D0C00725A4C /* MapMiniMap.swift */,
 				862CED291B45E494007EA4F2 /* MapTile.swift */,
 				862CED2B1B45E4A5007EA4F2 /* MapTileDesign.swift */,
-				862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */,
+				862CED2E1B45E4D1007EA4F2 /* MapTileDesignPotential.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -124,8 +122,6 @@
 		862CED461B45E5E2007EA4F2 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				862D67BB1B43BDA60003EA8A /* 101000100.txt */,
-				86D51B531B45093600ED2C91 /* 101000101.txt */,
 				86D42BFD1B439FC50058EE1D /* 101000100.xml */,
 			);
 			name = Maps;
@@ -183,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				86D42BF81B43668C0058EE1D /* Character.swift */,
+				86B31B081B4930ED000EBE96 /* Character.sks */,
 				86D42BF61B4361470058EE1D /* CharacterActions.sks */,
 			);
 			name = Nodes;
@@ -258,11 +255,10 @@
 				86B6B8F11B435E59003059D5 /* Assets.xcassets in Resources */,
 				86B6B8EF1B435E59003059D5 /* GameScene.sks in Resources */,
 				86D42BFE1B439FC50058EE1D /* 101000100.xml in Resources */,
-				862D67BC1B43BDA60003EA8A /* 101000100.txt in Resources */,
+				86B31B091B4930ED000EBE96 /* Character.sks in Resources */,
 				86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */,
 				867121311B44B33300C4CB0D /* CameraActions.sks in Resources */,
 				86B6B8F41B435E59003059D5 /* MainMenu.xib in Resources */,
-				86D51B541B45093600ED2C91 /* 101000101.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,11 +274,11 @@
 				862CED481B46522F007EA4F2 /* MapFootHoldDesign.swift in Sources */,
 				862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */,
 				862CED4D1B47445D007EA4F2 /* MapFoothold.swift in Sources */,
-				862CED281B45E487007EA4F2 /* MapLayerObject.swift in Sources */,
 				862CED311B45E501007EA4F2 /* bsc.swift in Sources */,
 				862CED411B45E54A007EA4F2 /* slLU.swift in Sources */,
 				862CED3F1B45E545007EA4F2 /* slLD.swift in Sources */,
 				862CED391B45E52A007EA4F2 /* enH1.swift in Sources */,
+				861EC9631B493D0C00725A4C /* MapMiniMap.swift in Sources */,
 				862CED331B45E508007EA4F2 /* edD.swift in Sources */,
 				862CED431B45E556007EA4F2 /* slRD.swift in Sources */,
 				862CED4A1B46717E007EA4F2 /* Map.swift in Sources */,

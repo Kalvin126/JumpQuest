@@ -9,26 +9,53 @@
 import SpriteKit
 
 class GameScene: SKScene, NSXMLParserDelegate {
+    
+    var char:SKSpriteNode?
+    let mainMap = Map()
+    
     override func didMoveToView(view: SKView) {
-        let mainMap = Map()
         
-        self.children
+        char = self.childNodeWithName("char") as? SKSpriteNode
+        
+        for tile in mainMap.tiles {
+            let spriteTextureName:String = tile.u! + ".\(tile.no!)"
+            
+            let sprite = SKSpriteNode(imageNamed: spriteTextureName)
+            //sprite.anchorPoint = CGPointMake(0.6, -0.7)
+            if let pos = mainMap.getTileDesignPosition(tile){
+                if tile.u! == "edD"{
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-30))
+                }else if tile.u! == "enH1"{
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-30))
+                }else{
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y))
+                }
+                sprite.setScale(1)
+                sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size:( sprite.texture?.size())!)
+                sprite.physicsBody?.dynamic = false
+                sprite.physicsBody?.restitution = 0
+                
+                self.addChild(sprite)
+            }
+
+        }
     }
     
 //    func createBackgroundNode() ->SKNode {
-//        
+//
 //    }
     
     override func mouseDown(theEvent: NSEvent) {
-        /* Called when a mouse click occurs */
-        
         let location = theEvent.locationInNode(self)
         
-        let sprite = SKSpriteNode(imageNamed:"edD.0")
-        sprite.anchorPoint = CGPointMake(0.0, 1.0)
-        sprite.position = location;
+        print("Clicked at \(location)")
+    }
+    
+    override func mouseDragged(theEvent: NSEvent) {
+        let cCameraPos = camera?.position
+        let newPosition = CGPointMake(((cCameraPos?.x)! - theEvent.deltaX), ((cCameraPos?.y)! + theEvent.deltaY))
         
-        self.addChild(sprite)
+        camera?.position = newPosition
     }
     
     override func keyDown(theEvent: NSEvent) {
@@ -41,20 +68,20 @@ class GameScene: SKScene, NSXMLParserDelegate {
         
         switch s3 {
         case NSUpArrowFunctionKey:
-            camera?.runAction(SKAction(named: "CMoveUp")!)
-            return
+            if char?.actionForKey("jumping") == nil {
+                let jumpAction = SKAction(named: "Jump")!
+                char?.runAction(jumpAction, withKey: "jumping")
+            }
             
         case NSDownArrowFunctionKey:
-            camera?.runAction(SKAction(named: "CMoveDown")!)
-            return
+            let proneAction = SKAction(named: "ProneState")!
+            char?.runAction(proneAction, withKey: "current")
             
         case NSRightArrowFunctionKey:
-            camera?.runAction(SKAction(named: "CMoveRight")!)
-            return
+            char?.runAction(SKAction(named: "WalkRight")!, withKey: "current")
             
         case NSLeftArrowFunctionKey:
-            camera?.runAction(SKAction(named: "CMoveLeft")!)
-            return
+            char?.runAction(SKAction(named: "WalkLeft")!, withKey: "current")
             
         case 39: // ]
             camera?.xScale += 0.1
@@ -69,6 +96,10 @@ class GameScene: SKScene, NSXMLParserDelegate {
         default:
             return
         }
+    }
+    
+    override func keyUp(theEvent: NSEvent) {
+        char?.removeActionForKey("current")
     }
     
     override func update(currentTime: CFTimeInterval) {

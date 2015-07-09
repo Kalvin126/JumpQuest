@@ -14,8 +14,6 @@ class edU : MapTileDesign {
         super.init()
         
         type = "edU"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "enH0", x: -90, y: 0),
                         MapTileDesignPotential(type: "enH0", x: 0, y: 0),
                         MapTileDesignPotential(type: "enV0", x: 0, y: 0),
@@ -27,3 +25,4 @@ class edU : MapTileDesign {
                         MapTileDesignPotential(type: "slRU", x: 0, y: 60)]
     }
 }
+

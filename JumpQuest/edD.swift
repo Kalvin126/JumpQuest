@@ -14,8 +14,6 @@ class edD : MapTileDesign {
         super.init()
         
         type = "edD"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "enH1", x: -90, y: 0),
                         MapTileDesignPotential(type: "enH1", x: 0, y: 0),
                         MapTileDesignPotential(type: "enV0", x: 0, y: -60),

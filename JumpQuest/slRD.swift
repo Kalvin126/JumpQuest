@@ -14,8 +14,6 @@ class slRD : MapTileDesign {
         super.init()
         
         type = "slRD"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "bsc", x: -90, y: 0),
                         MapTileDesignPotential(type: "bsc", x: 0, y: -60),
                         MapTileDesignPotential(type: "enH0", x: 0, y: 0),

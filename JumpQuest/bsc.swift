@@ -14,8 +14,6 @@ class bsc : MapTileDesign {
         super.init()
         
         type = "bsc"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "bsc", x: -90,   y: 0),    // += for Arrays?!!
                         MapTileDesignPotential(type: "bsc",  x: 90,   y: 0),    // awwwwwsome
                         MapTileDesignPotential(type: "bsc",   x: 0, y: -60),

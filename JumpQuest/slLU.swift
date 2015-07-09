@@ -14,8 +14,6 @@ class slLU : MapTileDesign {
         super.init()
         
         type = "slLU"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "bsc", x: 0, y: -60),
                         MapTileDesignPotential(type: "bsc", x:-90, y: 0),
                         MapTileDesignPotential(type: "enH0", x: 0, y: -60),

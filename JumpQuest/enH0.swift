@@ -14,8 +14,6 @@ class enH0 : MapTileDesign {
         super.init()
         
         type = "enH0"
-        setImage()
-        
         potentials += [ MapTileDesignPotential(type: "bsc", x: 0, y: 0),
                         MapTileDesignPotential(type: "enH0", x: -90, y: 0),
                         MapTileDesignPotential(type: "enH0", x: 90, y: 0),

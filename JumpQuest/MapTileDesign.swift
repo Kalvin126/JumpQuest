@@ -8,31 +8,32 @@
 
 import Foundation
 
-class MapTileDesign : MapTile {
+class MapTileDesign {
     
     var type:String?
     var potentials:[MapTileDesignPotential]
     
-    override init(){
+    weak var parent:MapTile?
+    
+    init(){
         potentials = []
         
-        super.init()
     }
     
     func setImage() {
         // Image = MapEditor.file.Directory.GetIMG("Tile/blackTile.img").GetChild(type + "/0")
     }
     
-    func getMath(type:String, x:Int, y:Int, multi:Int) -> (x:Int, y: Int){
-//        x -= object.getInt("x");
-//        y -= object.getInt("y");
+    func getMath(type:String, var x:Int, var y:Int, multi:Int) -> (x:Int, y: Int)? {
+        x -= (parent?.x)!
+        y -= (parent?.y)!
         
-        for p:MapTileDesignPotential in potentials {
-            if p.IsMatch(type, x: x, y:y, multi:multi) {
-                //return (x:p.x * multi + object.getInt("x"), y:p.y * multi + object.getInt("y"))
+        for p in potentials {
+            if p.IsMatch(type, x:x, y:y, multi:multi) {
+                return (x:(p.x! * multi + (parent?.x)!), y:(p.y! * multi + (parent?.y)!))
             }
         }
         
-        return (x:0xffff, y:0xffff); // need null val
+        return nil
     }
 }
