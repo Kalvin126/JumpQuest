@@ -24,9 +24,13 @@ class GameScene: SKScene, NSXMLParserDelegate {
             //sprite.anchorPoint = CGPointMake(0.6, -0.7)
             if let pos = mainMap.getTileDesignPosition(tile){
                 if tile.u! == "edD"{
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-30))
-                }else if tile.u! == "enH1"{
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-30))
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-28))
+                }else if spriteTextureName == "enH1.0" {
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-26))
+                }else if spriteTextureName == "enH1.1"{
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-45))
+                }else if spriteTextureName == "enH1.2" {
+                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-38))
                 }else{
                     sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y))
                 }
