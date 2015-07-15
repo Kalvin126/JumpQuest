@@ -8,14 +8,26 @@
 
 import SpriteKit
 
-class GameScene: SKScene, NSXMLParserDelegate {
+enum ColliderType : UInt32 {
+    case ColliderTypePlayer
+    case ColliderTypeWall
+}
+
+class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
     
     var char:SKSpriteNode?
     let mainMap = Map()
     
     override func didMoveToView(view: SKView) {
         
+        physicsWorld.contactDelegate = self
+        
         char = self.childNodeWithName("char") as? SKSpriteNode
+        char?.physicsBody?.friction = 0.0
+        char?.physicsBody?.angularDamping = 0.0
+        char?.physicsBody?.linearDamping = 0.0
+        char?.physicsBody?.categoryBitMask = ColliderType.ColliderTypePlayer.rawValue
+        char?.physicsBody?.contactTestBitMask = ColliderType.ColliderTypePlayer.rawValue
         
         for tile in mainMap.tiles {
             let spriteTextureName:String = tile.u! + ".\(tile.no!)"
@@ -34,14 +46,27 @@ class GameScene: SKScene, NSXMLParserDelegate {
                 }else{
                     sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y))
                 }
-                sprite.setScale(1)
-                sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size:( sprite.texture?.size())!)
-                sprite.physicsBody?.dynamic = false
-                sprite.physicsBody?.restitution = 0
                 
                 self.addChild(sprite)
             }
-
+        }
+        
+        for fh in mainMap.footholds {
+            let fhShape = CGPathCreateMutable()
+            CGPathMoveToPoint(fhShape, nil, CGFloat(fh.x1!), CGFloat(-fh.y1!))
+            CGPathAddLineToPoint(fhShape, nil, CGFloat(fh.x2!), CGFloat(-fh.y2!))
+            
+            let node = SKShapeNode(path: fhShape)
+            node.strokeColor = NSColor.redColor()
+            node.physicsBody = SKPhysicsBody(edgeLoopFromPath: fhShape)
+            node.physicsBody?.restitution = 0
+            node.physicsBody?.angularDamping = 0.0
+            node.physicsBody?.linearDamping = 0.0
+            node.physicsBody?.friction = 0.0
+            node.physicsBody?.dynamic = false
+            node.physicsBody?.categoryBitMask = ColliderType.ColliderTypeWall.rawValue
+            
+            self.addChild(node)
         }
     }
     
@@ -53,6 +78,7 @@ class GameScene: SKScene, NSXMLParserDelegate {
         let location = theEvent.locationInNode(self)
         
         print("Clicked at \(location)")
+        char?.position = location
     }
     
     override func mouseDragged(theEvent: NSEvent) {
@@ -65,10 +91,10 @@ class GameScene: SKScene, NSXMLParserDelegate {
     override func keyDown(theEvent: NSEvent) {
         super.keyDown(theEvent)
         
-        let s   =   theEvent.charactersIgnoringModifiers!
-        let s1  =   s.unicodeScalars
-        let s2  =   s1[s1.startIndex].value
-        let s3  =   Int(s2)
+        let s = theEvent.charactersIgnoringModifiers!
+        let s1 = s.unicodeScalars
+        let s2 = s1[s1.startIndex].value
+        let s3 = Int(s2)
         
         switch s3 {
         case NSUpArrowFunctionKey:
@@ -82,20 +108,20 @@ class GameScene: SKScene, NSXMLParserDelegate {
             char?.runAction(proneAction, withKey: "current")
             
         case NSRightArrowFunctionKey:
-            char?.runAction(SKAction(named: "WalkRight")!, withKey: "current")
+            let action = SKAction(named: "WalkRight")!
+            char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
             
         case NSLeftArrowFunctionKey:
-            char?.runAction(SKAction(named: "WalkLeft")!, withKey: "current")
+            let action = SKAction(named: "WalkLeft")!
+            char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
             
         case 39: // ]
             camera?.xScale += 0.1
             camera?.yScale += 0.1
-            return
             
         case 93: // '
             camera?.xScale -= 0.1
             camera?.yScale -= 0.1
-            return
             
         default:
             return
@@ -106,7 +132,23 @@ class GameScene: SKScene, NSXMLParserDelegate {
         char?.removeActionForKey("current")
     }
     
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    func didBeginContact(contact: SKPhysicsContact) {
+        
+        if contact.contactNormal.dx > 0.0 {
+            char?.physicsBody?.velocity.dx = 0.0
+        }
+        if contact.contactNormal.dy > 0.0 {
+            char?.physicsBody?.velocity.dy = 0.0
+        }
+//        var char:SKPhysicsBody
+//        var footholdWall:SKPhysicsBody
+//        
+//        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+//            char = contact.bodyA;
+//            footholdWall = contact.bodyB;
+//        }else{
+//            char = contact.bodyB;
+//            footholdWall = contact.bodyA;
+//        }
     }
 }

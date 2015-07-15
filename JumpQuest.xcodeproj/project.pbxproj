@@ -26,7 +26,6 @@
 		862CED481B46522F007EA4F2 /* MapFootHoldDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */; };
 		862CED4A1B46717E007EA4F2 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED491B46717E007EA4F2 /* Map.swift */; };
 		862CED4D1B47445D007EA4F2 /* MapFoothold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED4C1B47445D007EA4F2 /* MapFoothold.swift */; };
-		862CED4F1B4747F4007EA4F2 /* MapFootholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED4E1B4747F4007EA4F2 /* MapFootholds.swift */; };
 		867121311B44B33300C4CB0D /* CameraActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 867121301B44B33300C4CB0D /* CameraActions.sks */; };
 		86B31B091B4930ED000EBE96 /* Character.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B31B081B4930ED000EBE96 /* Character.sks */; };
 		86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EA1B435E59003059D5 /* AppDelegate.swift */; };
@@ -59,7 +58,6 @@
 		862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFootHoldDesign.swift; sourceTree = "<group>"; };
 		862CED491B46717E007EA4F2 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		862CED4C1B47445D007EA4F2 /* MapFoothold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFoothold.swift; sourceTree = "<group>"; };
-		862CED4E1B4747F4007EA4F2 /* MapFootholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFootholds.swift; sourceTree = "<group>"; };
 		867121301B44B33300C4CB0D /* CameraActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CameraActions.sks; path = ../CameraActions.sks; sourceTree = "<group>"; };
 		86B31B081B4930ED000EBE96 /* Character.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Character.sks; sourceTree = "<group>"; };
 		86B6B8E71B435E59003059D5 /* JumpQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				862CED4C1B47445D007EA4F2 /* MapFoothold.swift */,
-				862CED4E1B4747F4007EA4F2 /* MapFootholds.swift */,
 			);
 			name = Foothold;
 			sourceTree = "<group>";
@@ -269,7 +266,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				862CED4F1B4747F4007EA4F2 /* MapFootholds.swift in Sources */,
 				862CED351B45E511007EA4F2 /* edU.swift in Sources */,
 				862CED481B46522F007EA4F2 /* MapFootHoldDesign.swift in Sources */,
 				862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */,

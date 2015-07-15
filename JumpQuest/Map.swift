@@ -28,10 +28,12 @@ class Map : NSObject, NSXMLParserDelegate {
     
     var miniMap:MapMiniMap?
     var tiles:[MapTile]
+    var footholds:[MapFoothold]
     
     override init(){
         miniMap = MapMiniMap()
         tiles = []
+        footholds = []
         
         super.init()
         
@@ -48,7 +50,7 @@ class Map : NSObject, NSXMLParserDelegate {
     private var currentItemID:String?
     private var currentSubItemID:String?
     private var currentSubSubItemID:String?
-    private var currentItemInstance:MapItem?
+    private var currentItemInstance:AnyObject?
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         elementQueue.append(elementName)
@@ -134,23 +136,25 @@ class Map : NSObject, NSXMLParserDelegate {
                     if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
                         switch attribute{
                         case "x1":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).x1 = Int(value)
                         case "y1":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).y1 = Int(value)
                         case "x2":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).x2 = Int(value)
                         case "y2":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).y2 = Int(value)
                         case "prev":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).prev = Int(value)
                         case "next":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapFoothold).next = Int(value)
                         default:
                             print("Unknown attribute: \(attributeDict)")
                         }
                     }
                 }else if currentSubItemID != nil {
                     currentSubSubItemID = attributeDict["name"]
+                    currentItemInstance = MapFoothold()
+                    footholds += [currentItemInstance as! MapFoothold]
                 }else if currentItemID != nil {
                     currentSubItemID = attributeDict["name"]
                 }else{
@@ -310,7 +314,7 @@ class Map : NSObject, NSXMLParserDelegate {
                         switch currentItemID!{
                         case "info":
                             if attribute == "tS" {
-                                // = value
+                                print("\(value)")
                             }
                         case "tile":
                             currentSubItemID = attribute

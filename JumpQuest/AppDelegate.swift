@@ -18,9 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         /* Pick a size for the scene */
+        
+        skView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+        
         if let scene = GameScene(fileNamed:"GameScene") {
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFit
+            scene.scaleMode = .ResizeFill
             
             self.skView!.presentScene(scene)
             

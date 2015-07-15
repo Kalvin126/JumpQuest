@@ -9,16 +9,14 @@
 import Foundation
 import Darwin
 
-class MapFoothold : MapItem {
-
-    //var s1/s2:MapFootholdSide?
-    var group:MapFootHolds?
+class MapFoothold {
     
-    override init(ID:Int){
-        super.init(ID: ID)
-    }
+    var x1:Int?
+    var y1:Int?
+    var x2:Int?
+    var y2:Int?
     
-    func distance(x1:Double, y1:Double, x2:Double, y2:Double) -> Double{
-        return sqrt( pow(x2-x1, 2) + pow(y2-y1, 2) )
-    }
+    var prev:Int?
+    var next:Int?
+    
 }
