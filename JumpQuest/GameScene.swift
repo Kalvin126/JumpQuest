@@ -16,6 +16,8 @@ enum ColliderType : UInt32 {
 class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
     
     var char:SKSpriteNode?
+    var charOrientation:String = "Right"    // Should only be "Right" or "Left" - Default: Right
+    
     let mainMap = Map()
     
     override func didMoveToView(view: SKView) {
@@ -98,22 +100,43 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
         
         switch s3 {
         case NSUpArrowFunctionKey:
-            if char?.actionForKey("jumping") == nil {
-                let jumpAction = SKAction(named: "Jump")!
-                char?.runAction(jumpAction, withKey: "jumping")
-            }
+            return // TODO: Rope/Ladder movement
             
         case NSDownArrowFunctionKey:
-            let proneAction = SKAction(named: "ProneState")!
-            char?.runAction(proneAction, withKey: "current")
+            if let proneAction = SKAction(named: ("prone" + charOrientation)) {
+                char?.runAction(proneAction, withKey: "current")
+            }
             
         case NSRightArrowFunctionKey:
-            let action = SKAction(named: "WalkRight")!
-            char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
+            char?.removeAllActions()
+            
+            charOrientation = "Right"
+            if let newIdle = SKAction(named: "idleRight") {
+                char?.runAction(SKAction.repeatActionForever(newIdle))
+            }
+            
+            if let action = SKAction(named: "walkRight"){
+                char?.runAction(action, withKey: "current")
+            }
             
         case NSLeftArrowFunctionKey:
-            let action = SKAction(named: "WalkLeft")!
-            char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
+            char?.removeAllActions()
+            
+            charOrientation = "Left"
+            if let newIdle = SKAction(named: "idleLeft") {
+                char?.runAction(SKAction.repeatActionForever(newIdle))
+            }
+            
+            if let action = SKAction(named: "walkLeft") {
+                char?.runAction(action, withKey: "current")
+            }
+        
+        case 32:
+            if char?.actionForKey("jumping") == nil {
+                if let jumpAction = SKAction(named: "jump" + charOrientation) {
+                    char?.runAction(jumpAction, withKey: "jumping")
+                }
+            }
             
         case 39: // ]
             camera?.xScale += 0.1
