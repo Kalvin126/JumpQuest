@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 class MapTile : MapItem {
     
@@ -22,18 +23,16 @@ class MapTile : MapItem {
         super.init(ID: ID)
     }
     
-//    func createFootholddesignList(){
-//        if let entry = image.GetChild("foothold") as! IMGEntry {
-//            for e:IMGEntry in entry.childs.Values {
-//                let fh:MapFootholdDesign = MapFootholdDesign()
-//                fh.object = object
-//                fh.image = e
-//                footholds.Add(fh)
-//            }
-//        }
-//    }
+    func setDesignSize() {
+        let spriteTextureName:String = u! + ".\(no!)"
+        
+        if let texture = NSImage(named: spriteTextureName) {
+            let size = texture.size
+            design?.size = (width:Int(size.width), height:Int(size.height))
+        }
+    }
     
-    func setDesign(type:String){
+    func setDesign(type:String) {
         switch (type){
             case "bsc":     design = bsc()
             case "enH0":    design = enH0()

@@ -10,6 +10,8 @@ import Foundation
 
 class MapTileDesign {
     
+    var size:(width:Int, height:Int)?
+    
     var type:String?
     var potentials:[MapTileDesignPotential]
     
@@ -17,7 +19,6 @@ class MapTileDesign {
     
     init(){
         potentials = []
-        
     }
     
     func setImage() {

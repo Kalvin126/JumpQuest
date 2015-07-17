@@ -26,6 +26,7 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
         
         char = self.childNodeWithName("char") as? SKSpriteNode
         char?.physicsBody?.friction = 0.0
+        char?.physicsBody?.restitution = 0.0
         char?.physicsBody?.angularDamping = 0.0
         char?.physicsBody?.linearDamping = 0.0
         char?.physicsBody?.categoryBitMask = ColliderType.ColliderTypePlayer.rawValue
@@ -35,22 +36,17 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
             let spriteTextureName:String = tile.u! + ".\(tile.no!)"
             
             let sprite = SKSpriteNode(imageNamed: spriteTextureName)
-            //sprite.anchorPoint = CGPointMake(0.6, -0.7)
-            if let pos = mainMap.getTileDesignPosition(tile){
-                if tile.u! == "edD"{
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-28))
-                }else if spriteTextureName == "enH1.0" {
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-26))
-                }else if spriteTextureName == "enH1.1"{
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-45))
-                }else if spriteTextureName == "enH1.2" {
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y-38))
-                }else{
-                    sprite.position = CGPointMake(CGFloat(pos.x), CGFloat(-pos.y))
+            sprite.anchorPoint = CGPointMake(0.0, 1.0)
+            
+            if tile.u == "enH1" || tile.u == "edD" {
+                if let pos = mainMap.getTileDesignPosition(tile){
+                    sprite.position = CGPointMake(CGFloat(pos.x-20), CGFloat(-pos.y+40))
                 }
-                
-                self.addChild(sprite)
+            }else{
+                sprite.position = CGPointMake(CGFloat(tile.x!-20), CGFloat(-tile.y!+40))
             }
+            
+            self.addChild(sprite)
         }
         
         for fh in mainMap.footholds {
@@ -131,7 +127,7 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
                 char?.runAction(action, withKey: "current")
             }
         
-        case 32:
+        case 32: // space bar
             if char?.actionForKey("jumping") == nil {
                 if let jumpAction = SKAction(named: "jump" + charOrientation) {
                     char?.runAction(jumpAction, withKey: "jumping")

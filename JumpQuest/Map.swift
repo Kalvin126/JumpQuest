@@ -29,11 +29,13 @@ class Map : NSObject, NSXMLParserDelegate {
     var miniMap:MapMiniMap?
     var tiles:[MapTile]
     var footholds:[MapFoothold]
+    var mapLR:[MapLR]
     
     override init(){
         miniMap = MapMiniMap()
         tiles = []
         footholds = []
+        mapLR = []
         
         super.init()
         
@@ -166,23 +168,25 @@ class Map : NSObject, NSXMLParserDelegate {
                     if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
                         switch attribute{
                         case "l":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).l = Int(value)
                         case "uf":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).uf = Int(value)
                         case "x":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).x = Int(value)
                         case "y1":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).y = Int(value)
                         case "y2":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).y2 = Int(value)
                         case "page":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapLR).page = Int(value)
                         default:
                             print("Unknown attribute: \(attributeDict)")
                         }
                     }
                 }else{
                     currentItemID = attributeDict["name"]
+                    currentItemInstance = MapLR(ID:Int(currentItemID!)!)
+                    mapLR += [currentItemInstance as! MapLR]
                 }
             }
             else if currentSection == "miniMap" {
@@ -279,6 +283,7 @@ class Map : NSObject, NSXMLParserDelegate {
                                 (currentItemInstance as! MapTile).setDesign(value)
                             case "no":
                                 (currentItemInstance as! MapTile).no = Int(value)
+                                (currentItemInstance as! MapTile).setDesignSize()
                             case "zM":
                                 (currentItemInstance as! MapTile).zM = Int(value)
                             default:
@@ -371,17 +376,27 @@ class Map : NSObject, NSXMLParserDelegate {
             print("DONE: XMLParse of MapID: \(mapID!)")
         }
     }
-    
+
     func getTileDesignPosition(tile:MapTile) -> (x:Int, y:Int)? {
-        var multi:Int? = miniMap?.mag
-        if multi == 0 {
-            multi = 1
-        }
+        var closestTitle:MapTile?
+        var closestDistance:Int = Int.max
         
         for t in tiles{
-            if let pos = t.design?.getMath(tile.u!, x: tile.x!, y: tile.y!, multi: multi!) {
-                return pos
+            if t === tile{
+                continue
             }
+            
+            let dist = distance(tile.x!, tile.y!, t.x!, t.y!)
+            if closestDistance > dist {
+                closestTitle = t
+                closestDistance = dist
+            }
+        }
+        
+        if closestDistance < 15 {
+            let topParentSize = closestTitle?.design?.size
+            
+            return (x:tile.x!, y:((closestTitle?.y!)!+topParentSize!.height))
         }
         
         return nil

@@ -25,7 +25,8 @@ class MapTileDesignPotential {
     
     func IsMatch(type:String, x:Int, y:Int, multi:Int) -> Bool {
         let x1 = self.x! * multi, y1 = self.y! * multi, x2 = x, y2 = y
-        let distance = sqrt( pow(Double(x2-x1), 2.0) + pow(Double(y2-y1), 2.0) )
-        return (self.type == type) && (distance <= 15)
+        let dist = distance(x1, y1, x2, y2)
+        
+        return (self.type == type) && (dist <= 15)
     }
 }
