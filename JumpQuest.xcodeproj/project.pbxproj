@@ -26,10 +26,14 @@
 		862CED481B46522F007EA4F2 /* MapFootHoldDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */; };
 		862CED4A1B46717E007EA4F2 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED491B46717E007EA4F2 /* Map.swift */; };
 		862CED4D1B47445D007EA4F2 /* MapFoothold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CED4C1B47445D007EA4F2 /* MapFoothold.swift */; };
+		8669780D1B5DA470002B9ABE /* IOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669780C1B5DA470002B9ABE /* IOHandler.swift */; };
 		867121311B44B33300C4CB0D /* CameraActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 867121301B44B33300C4CB0D /* CameraActions.sks */; };
+		868D09381B5C4836007F0AC2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868D09371B5C4836007F0AC2 /* AVFoundation.framework */; };
+		868D093B1B5C4E46007F0AC2 /* MoonlightShadow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 868D093A1B5C4E46007F0AC2 /* MoonlightShadow.mp3 */; };
+		868D093F1B5C6EDA007F0AC2 /* 0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 868D093D1B5C6EDA007F0AC2 /* 0.0.png */; };
+		868D09401B5C6EDA007F0AC2 /* 12.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 868D093E1B5C6EDA007F0AC2 /* 12.0.png */; };
 		86A0F0AE1B5980300054D790 /* MapLR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0F0AD1B5980300054D790 /* MapLR.swift */; };
 		86A0F0B01B5987480054D790 /* MathExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0F0AF1B5987480054D790 /* MathExt.swift */; };
-		86B31B091B4930ED000EBE96 /* Character.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B31B081B4930ED000EBE96 /* Character.sks */; };
 		86B6B8EB1B435E59003059D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EA1B435E59003059D5 /* AppDelegate.swift */; };
 		86B6B8ED1B435E59003059D5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6B8EC1B435E59003059D5 /* GameScene.swift */; };
 		86B6B8EF1B435E59003059D5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 86B6B8EE1B435E59003059D5 /* GameScene.sks */; };
@@ -60,10 +64,14 @@
 		862CED471B46522F007EA4F2 /* MapFootHoldDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFootHoldDesign.swift; sourceTree = "<group>"; };
 		862CED491B46717E007EA4F2 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		862CED4C1B47445D007EA4F2 /* MapFoothold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFoothold.swift; sourceTree = "<group>"; };
+		8669780C1B5DA470002B9ABE /* IOHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOHandler.swift; sourceTree = "<group>"; };
 		867121301B44B33300C4CB0D /* CameraActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CameraActions.sks; path = ../CameraActions.sks; sourceTree = "<group>"; };
+		868D09371B5C4836007F0AC2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		868D093A1B5C4E46007F0AC2 /* MoonlightShadow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MoonlightShadow.mp3; sourceTree = "<group>"; };
+		868D093D1B5C6EDA007F0AC2 /* 0.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.0.png; sourceTree = "<group>"; };
+		868D093E1B5C6EDA007F0AC2 /* 12.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.0.png; sourceTree = "<group>"; };
 		86A0F0AD1B5980300054D790 /* MapLR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLR.swift; sourceTree = "<group>"; };
 		86A0F0AF1B5987480054D790 /* MathExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathExt.swift; sourceTree = "<group>"; };
-		86B31B081B4930ED000EBE96 /* Character.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Character.sks; sourceTree = "<group>"; };
 		86B6B8E71B435E59003059D5 /* JumpQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B6B8EA1B435E59003059D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B6B8EC1B435E59003059D5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -81,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868D09381B5C4836007F0AC2 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +147,27 @@
 			name = Foothold;
 			sourceTree = "<group>";
 		};
+		868D09391B5C4CDA007F0AC2 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				868D093A1B5C4E46007F0AC2 /* MoonlightShadow.mp3 */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		868D093C1B5C6EBD007F0AC2 /* Cursor */ = {
+			isa = PBXGroup;
+			children = (
+				868D093D1B5C6EDA007F0AC2 /* 0.0.png */,
+				868D093E1B5C6EDA007F0AC2 /* 12.0.png */,
+			);
+			name = Cursor;
+			sourceTree = "<group>";
+		};
 		86B6B8DE1B435E59003059D5 = {
 			isa = PBXGroup;
 			children = (
+				868D09371B5C4836007F0AC2 /* AVFoundation.framework */,
 				86B6B8E91B435E59003059D5 /* JumpQuest */,
 				86B6B8E81B435E59003059D5 /* Products */,
 			);
@@ -170,8 +197,8 @@
 		86B6B8FB1B435F89003059D5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				86B6B8EC1B435E59003059D5 /* GameScene.swift */,
 				86B6B8EE1B435E59003059D5 /* GameScene.sks */,
+				86D42BF61B4361470058EE1D /* CharacterActions.sks */,
 				867121301B44B33300C4CB0D /* CameraActions.sks */,
 			);
 			name = Scenes;
@@ -181,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				86D42BF81B43668C0058EE1D /* Character.swift */,
-				86B31B081B4930ED000EBE96 /* Character.sks */,
-				86D42BF61B4361470058EE1D /* CharacterActions.sks */,
+				86B6B8EC1B435E59003059D5 /* GameScene.swift */,
+				8669780C1B5DA470002B9ABE /* IOHandler.swift */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -190,6 +217,8 @@
 		86D42BFF1B439FD30058EE1D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				868D093C1B5C6EBD007F0AC2 /* Cursor */,
+				868D09391B5C4CDA007F0AC2 /* Sound */,
 				862CED461B45E5E2007EA4F2 /* Maps */,
 				862CED231B45E3CE007EA4F2 /* Model */,
 				86B6B8F01B435E59003059D5 /* Assets.xcassets */,
@@ -255,10 +284,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868D093B1B5C4E46007F0AC2 /* MoonlightShadow.mp3 in Resources */,
 				86B6B8F11B435E59003059D5 /* Assets.xcassets in Resources */,
+				868D09401B5C6EDA007F0AC2 /* 12.0.png in Resources */,
 				86B6B8EF1B435E59003059D5 /* GameScene.sks in Resources */,
+				868D093F1B5C6EDA007F0AC2 /* 0.0.png in Resources */,
 				86D42BFE1B439FC50058EE1D /* 101000100.xml in Resources */,
-				86B31B091B4930ED000EBE96 /* Character.sks in Resources */,
 				86D42BF71B4361470058EE1D /* CharacterActions.sks in Resources */,
 				867121311B44B33300C4CB0D /* CameraActions.sks in Resources */,
 				86B6B8F41B435E59003059D5 /* MainMenu.xib in Resources */,
@@ -278,6 +309,7 @@
 				86A0F0B01B5987480054D790 /* MathExt.swift in Sources */,
 				862CED2A1B45E494007EA4F2 /* MapTile.swift in Sources */,
 				862CED4D1B47445D007EA4F2 /* MapFoothold.swift in Sources */,
+				8669780D1B5DA470002B9ABE /* IOHandler.swift in Sources */,
 				862CED311B45E501007EA4F2 /* bsc.swift in Sources */,
 				862CED411B45E54A007EA4F2 /* slLU.swift in Sources */,
 				862CED3F1B45E545007EA4F2 /* slLD.swift in Sources */,

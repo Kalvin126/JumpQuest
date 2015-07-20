@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Kalvin Loc. All rights reserved.
 //
 
+import AVFoundation
 import SpriteKit
+
+let MUSIC:Bool = false
 
 enum ColliderType : UInt32 {
     case ColliderTypePlayer
@@ -17,21 +20,51 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
     
     var char:SKSpriteNode?
     var charOrientation:String = "Right"    // Should only be "Right" or "Left" - Default: Right
+    var clickTele = true
     
     let mainMap = Map()
     
+    var cursor:NSCursor?
+    
+    var bgmPlayer:AVAudioPlayer?
+    var effectPlayer:AVAudioPlayer?
+    
     override func didMoveToView(view: SKView) {
-        
         physicsWorld.contactDelegate = self
         
+        // BGM
+        if MUSIC {
+            let dir = mainMap.bgm?.rangeOfString("/")
+            let bgmName:String = (mainMap.bgm?.substringFromIndex(advance((dir?.startIndex)!, 1)))!
+            if let path = NSBundle.mainBundle().pathForResource(bgmName, ofType:"mp3") {
+                do {
+                    bgmPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path))
+                    bgmPlayer!.prepareToPlay()
+                    bgmPlayer!.play()
+                }catch{
+                    print(error)
+                }
+            }
+        }
+        
+        // Cursor
+        if let cursorImage = NSImage(named: "0.0") {
+            cursor = NSCursor(image: cursorImage, hotSpot: NSPoint(x: 0, y: 3)) // correct hot point?
+            view.addCursorRect(self.frame, cursor: cursor!)
+            cursor?.setOnMouseEntered(true)
+        }
+        
+        // character config
         char = self.childNodeWithName("char") as? SKSpriteNode
         char?.physicsBody?.friction = 0.0
         char?.physicsBody?.restitution = 0.0
         char?.physicsBody?.angularDamping = 0.0
         char?.physicsBody?.linearDamping = 0.0
         char?.physicsBody?.categoryBitMask = ColliderType.ColliderTypePlayer.rawValue
-        char?.physicsBody?.contactTestBitMask = ColliderType.ColliderTypePlayer.rawValue
+        char?.physicsBody?.contactTestBitMask = ColliderType.ColliderTypeWall.rawValue
+        char?.physicsBody?.collisionBitMask = COLLISION_ON
         
+        // tile placement
         for tile in mainMap.tiles {
             let spriteTextureName:String = tile.u! + ".\(tile.no!)"
             
@@ -49,6 +82,7 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
             self.addChild(sprite)
         }
         
+        // foothold placement/config
         for fh in mainMap.footholds {
             let fhShape = CGPathCreateMutable()
             CGPathMoveToPoint(fhShape, nil, CGFloat(fh.x1!), CGFloat(-fh.y1!))
@@ -62,7 +96,8 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
             node.physicsBody?.linearDamping = 0.0
             node.physicsBody?.friction = 0.0
             node.physicsBody?.dynamic = false
-            node.physicsBody?.categoryBitMask = ColliderType.ColliderTypeWall.rawValue
+            node.physicsBody?.affectedByGravity = false
+            node.physicsBody?.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
             
             self.addChild(node)
         }
@@ -72,102 +107,37 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
 //
 //    }
     
-    override func mouseDown(theEvent: NSEvent) {
-        let location = theEvent.locationInNode(self)
-        
-        print("Clicked at \(location)")
-        char?.position = location
-    }
-    
-    override func mouseDragged(theEvent: NSEvent) {
-        let cCameraPos = camera?.position
-        let newPosition = CGPointMake(((cCameraPos?.x)! - theEvent.deltaX), ((cCameraPos?.y)! + theEvent.deltaY))
-        
-        camera?.position = newPosition
-    }
-    
-    override func keyDown(theEvent: NSEvent) {
-        super.keyDown(theEvent)
-        
-        let s = theEvent.charactersIgnoringModifiers!
-        let s1 = s.unicodeScalars
-        let s2 = s1[s1.startIndex].value
-        let s3 = Int(s2)
-        
-        switch s3 {
-        case NSUpArrowFunctionKey:
-            return // TODO: Rope/Ladder movement
-            
-        case NSDownArrowFunctionKey:
-            if let proneAction = SKAction(named: ("prone" + charOrientation)) {
-                char?.runAction(proneAction, withKey: "current")
-            }
-            
-        case NSRightArrowFunctionKey:
-            char?.removeAllActions()
-            
-            charOrientation = "Right"
-            if let newIdle = SKAction(named: "idleRight") {
-                char?.runAction(SKAction.repeatActionForever(newIdle))
-            }
-            
-            if let action = SKAction(named: "walkRight"){
-                char?.runAction(action, withKey: "current")
-            }
-            
-        case NSLeftArrowFunctionKey:
-            char?.removeAllActions()
-            
-            charOrientation = "Left"
-            if let newIdle = SKAction(named: "idleLeft") {
-                char?.runAction(SKAction.repeatActionForever(newIdle))
-            }
-            
-            if let action = SKAction(named: "walkLeft") {
-                char?.runAction(action, withKey: "current")
-            }
-        
-        case 32: // space bar
-            if char?.actionForKey("jumping") == nil {
-                if let jumpAction = SKAction(named: "jump" + charOrientation) {
-                    char?.runAction(jumpAction, withKey: "jumping")
-                }
-            }
-            
-        case 39: // ]
-            camera?.xScale += 0.1
-            camera?.yScale += 0.1
-            
-        case 93: // '
-            camera?.xScale -= 0.1
-            camera?.yScale -= 0.1
-            
-        default:
-            return
-        }
-    }
-    
-    override func keyUp(theEvent: NSEvent) {
-        char?.removeActionForKey("current")
-    }
+    let COLLISION_ON:UInt32 = 0x00001000
+    let COLLISION_OFF:UInt32 = 0x0
     
     func didBeginContact(contact: SKPhysicsContact) {
+        print("Begin Contact at \(contact.contactNormal)")
+    
+        var charPB:SKPhysicsBody
+        var footholdWallPB:SKPhysicsBody
         
-        if contact.contactNormal.dx > 0.0 {
-            char?.physicsBody?.velocity.dx = 0.0
+        if contact.bodyA.categoryBitMask == ColliderType.ColliderTypePlayer.rawValue {
+            charPB = contact.bodyA;
+            footholdWallPB = contact.bodyB;
+        }else{
+            charPB = contact.bodyB;
+            footholdWallPB = contact.bodyA;
         }
-        if contact.contactNormal.dy > 0.0 {
-            char?.physicsBody?.velocity.dy = 0.0
+        
+        print("CON \(footholdWallPB.collisionBitMask) - \(charPB.collisionBitMask)")
+        if contact.contactNormal.dx < 0 && contact.contactNormal.dy == 1.0 {
+            footholdWallPB.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_ON
+            (footholdWallPB.node as! SKShapeNode).strokeColor = NSColor.yellowColor()
         }
-//        var char:SKPhysicsBody
-//        var footholdWall:SKPhysicsBody
-//        
-//        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-//            char = contact.bodyA;
-//            footholdWall = contact.bodyB;
-//        }else{
-//            char = contact.bodyB;
-//            footholdWall = contact.bodyA;
-//        }
+    }
+    
+    func didEndContact(contact: SKPhysicsContact) {
+        if contact.bodyA.categoryBitMask == ColliderType.ColliderTypeWall.rawValue {
+            contact.bodyA.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
+            (contact.bodyA.node as! SKShapeNode).strokeColor = NSColor.blueColor()
+        }else{
+            contact.bodyB.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
+            (contact.bodyA.node as! SKShapeNode).strokeColor = NSColor.blueColor()
+        }
     }
 }

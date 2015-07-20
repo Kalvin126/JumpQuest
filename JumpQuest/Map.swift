@@ -396,7 +396,7 @@ class Map : NSObject, NSXMLParserDelegate {
         if closestDistance < 15 {
             let topParentSize = closestTitle?.design?.size
             
-            return (x:tile.x!, y:((closestTitle?.y!)!+topParentSize!.height))
+            return (x:closestTitle!.x!, y:((closestTitle?.y!)!+topParentSize!.height))
         }
         
         return nil
