@@ -16,16 +16,17 @@ enum ColliderType : UInt32 {
     case ColliderTypeWall
 }
 
-class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    // character states - extensions cannot have stored properties...
     var char:SKSpriteNode?
     var charOrientation:String = "Right"    // Should only be "Right" or "Left" - Default: Right
-    var clickTele = true
-    
+    var jumping:Bool = false
+
     let mainMap = Map()
-    
     var cursor:NSCursor?
     
+    var clickTele = true
     var bgmPlayer:AVAudioPlayer?
     var effectPlayer:AVAudioPlayer?
     
@@ -109,35 +110,42 @@ class GameScene: SKScene, NSXMLParserDelegate, SKPhysicsContactDelegate {
     
     let COLLISION_ON:UInt32 = 0x00001000
     let COLLISION_OFF:UInt32 = 0x0
+    let COLLIDED:NSColor = NSColor.greenColor()
+    let COLLIDING:NSColor = NSColor.blueColor()
     
     func didBeginContact(contact: SKPhysicsContact) {
-        print("Begin Contact at \(contact.contactNormal)")
-    
-        var charPB:SKPhysicsBody
+        print("Begin Contact at x:\(contact.contactNormal.dx) y:\(contact.contactNormal.dy)")
         var footholdWallPB:SKPhysicsBody
         
         if contact.bodyA.categoryBitMask == ColliderType.ColliderTypePlayer.rawValue {
-            charPB = contact.bodyA;
             footholdWallPB = contact.bodyB;
         }else{
-            charPB = contact.bodyB;
             footholdWallPB = contact.bodyA;
         }
         
-        print("CON \(footholdWallPB.collisionBitMask) - \(charPB.collisionBitMask)")
-        if contact.contactNormal.dx < 0 && contact.contactNormal.dy == 1.0 {
+        if contact.contactNormal.dx < 0 && contact.contactNormal.dy == 1.0 {    // Touched ground
             footholdWallPB.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_ON
-            (footholdWallPB.node as! SKShapeNode).strokeColor = NSColor.yellowColor()
+            (footholdWallPB.node as! SKShapeNode).strokeColor = COLLIDING
+            
+            if jumping {
+                jumping = !jumping
+                char?.removeActionForKey("jumping")
+            }
         }
     }
     
     func didEndContact(contact: SKPhysicsContact) {
-        if contact.bodyA.categoryBitMask == ColliderType.ColliderTypeWall.rawValue {
-            contact.bodyA.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
-            (contact.bodyA.node as! SKShapeNode).strokeColor = NSColor.blueColor()
+        var fh:SKShapeNode?
+        
+        if contact.bodyA.categoryBitMask == ColliderType.ColliderTypePlayer.rawValue {
+            fh = contact.bodyB.node as? SKShapeNode
         }else{
-            contact.bodyB.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
-            (contact.bodyA.node as! SKShapeNode).strokeColor = NSColor.blueColor()
+            fh = contact.bodyA.node as? SKShapeNode
+        }
+        
+        if (fh != nil) {
+            fh!.physicsBody!.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_OFF
+            fh!.strokeColor = COLLIDED
         }
     }
 }

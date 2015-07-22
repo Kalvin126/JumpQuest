@@ -59,7 +59,7 @@ extension GameScene {
             }
             
             if let action = SKAction(named: "walkRight"){
-                char?.runAction(action, withKey: "current")
+                char?.runAction(SKAction.repeatActionForever(action), withKey: "current") // Does not actually reapeatForever?
             }
             
         case NSLeftArrowFunctionKey:
@@ -71,14 +71,14 @@ extension GameScene {
             }
             
             if let action = SKAction(named: "walkLeft") {
-                char?.runAction(action, withKey: "current")
+                char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
             }
             
         case 32: // space bar
-            if char?.actionForKey("jumping") == nil {
-                if let jumpAction = SKAction(named: "jump" + charOrientation) {
-                    char?.runAction(jumpAction, withKey: "jumping")
-                }
+            if let jumpAction = SKAction(named: "jump" + charOrientation) where !jumping {
+                jumping = true
+                char?.runAction(SKAction.repeatActionForever(jumpAction), withKey: "jumping")
+                char?.physicsBody?.applyImpulse(CGVectorMake(0.0, 100.0))
             }
             
         case 99: // c - center camera on char
