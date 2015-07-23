@@ -39,47 +39,31 @@ extension GameScene {
         super.keyDown(theEvent)
         
         let s = theEvent.charactersIgnoringModifiers!.unicodeScalars
-        let s1 = Int(s[s.startIndex].value)
+        let keyPressed = Int(s[s.startIndex].value)
         
-        switch s1 {
+        switch keyPressed {
         case NSUpArrowFunctionKey:
             return // TODO: Rope/Ladder movement
             
         case NSDownArrowFunctionKey:
-            if let proneAction = SKAction(named: ("prone" + charOrientation)) {
-                char?.runAction(proneAction, withKey: "current")
-            }
+            char?.prone()
             
         case NSRightArrowFunctionKey:
-            char?.removeAllActions()
-            
-            charOrientation = "Right"
-            if let newIdle = SKAction(named: "idleRight") {
-                char?.runAction(SKAction.repeatActionForever(newIdle))
+            if char?.orientation != "Right" {
+                char?.changeOrientationTo("Right")
             }
             
-            if let action = SKAction(named: "walkRight"){
-                char?.runAction(SKAction.repeatActionForever(action), withKey: "current") // Does not actually reapeatForever?
-            }
+            char?.walk()
             
         case NSLeftArrowFunctionKey:
-            char?.removeAllActions()
-            
-            charOrientation = "Left"
-            if let newIdle = SKAction(named: "idleLeft") {
-                char?.runAction(SKAction.repeatActionForever(newIdle))
+            if char?.orientation != "Left" {
+                char?.changeOrientationTo("Left")
             }
             
-            if let action = SKAction(named: "walkLeft") {
-                char?.runAction(SKAction.repeatActionForever(action), withKey: "current")
-            }
+            char?.walk()
             
         case 32: // space bar
-            if let jumpAction = SKAction(named: "jump" + charOrientation) where !jumping {
-                jumping = true
-                char?.runAction(SKAction.repeatActionForever(jumpAction), withKey: "jumping")
-                char?.physicsBody?.applyImpulse(CGVectorMake(0.0, 100.0))
-            }
+            char?.jump()
             
         case 99: // c - center camera on char
             camera?.position = (char?.position)!
@@ -101,7 +85,12 @@ extension GameScene {
     }
     
     override func keyUp(theEvent: NSEvent) {
-        char?.removeActionForKey("current")
+        let s = theEvent.charactersIgnoringModifiers!.unicodeScalars
+        let keyPressed = Int(s[s.startIndex].value)
+        
+        if keyPressed != 32 { // jump should not halt actions
+            char?.stopDynamicActions()
+        }
     }
     
     override func performKeyEquivalent(theEvent: NSEvent) -> Bool {

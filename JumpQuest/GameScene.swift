@@ -17,11 +17,8 @@ enum ColliderType : UInt32 {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
-    // character states - extensions cannot have stored properties...
-    var char:SKSpriteNode?
-    var charOrientation:String = "Right"    // Should only be "Right" or "Left" - Default: Right
-    var jumping:Bool = false
+
+    var char:Character?
 
     let mainMap = Map()
     var cursor:NSCursor?
@@ -56,13 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // character config
-        char = self.childNodeWithName("char") as? SKSpriteNode
-        char?.physicsBody?.friction = 0.0
-        char?.physicsBody?.restitution = 0.0
-        char?.physicsBody?.angularDamping = 0.0
-        char?.physicsBody?.linearDamping = 0.0
-        char?.physicsBody?.categoryBitMask = ColliderType.ColliderTypePlayer.rawValue
-        char?.physicsBody?.contactTestBitMask = ColliderType.ColliderTypeWall.rawValue
+        char = self.childNodeWithName("char") as? Character
         char?.physicsBody?.collisionBitMask = COLLISION_ON
         
         // tile placement
@@ -127,10 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             footholdWallPB.categoryBitMask = ColliderType.ColliderTypeWall.rawValue | COLLISION_ON
             (footholdWallPB.node as! SKShapeNode).strokeColor = COLLIDING
             
-            if jumping {
-                jumping = !jumping
-                char?.removeActionForKey("jumping")
-            }
+            char?.collidedWithFloor()
         }
     }
     
