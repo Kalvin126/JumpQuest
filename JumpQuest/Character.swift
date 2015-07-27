@@ -13,6 +13,7 @@ class Character : SKSpriteNode {
     var orientation:String = "Right"    // Should only be "Right" or "Left" - Default: Right
     var jumping:Bool = false
     var walking:Bool = false
+    var climbing:Bool = false
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

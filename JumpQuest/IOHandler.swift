@@ -86,14 +86,10 @@ extension GameScene {
     
     override func keyUp(theEvent: NSEvent) {
         let s = theEvent.charactersIgnoringModifiers!.unicodeScalars
-        let keyPressed = Int(s[s.startIndex].value)
+        let keyDepressed = Int(s[s.startIndex].value)
         
-        if keyPressed != 32 { // jump should not halt actions
+        if keyDepressed != 32 {
             char?.stopDynamicActions()
         }
-    }
-    
-    override func performKeyEquivalent(theEvent: NSEvent) -> Bool {
-        return true
     }
 }

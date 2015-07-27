@@ -29,13 +29,17 @@ class Map : NSObject, NSXMLParserDelegate {
     var miniMap:MapMiniMap?
     var tiles:[MapTile]
     var footholds:[MapFoothold]
-    var mapLR:[MapLR]
+    var ladders:[MapLR]
+    var backTiles:[MapBackTile]
+    var objects:[MapObject]
     
     override init(){
         miniMap = MapMiniMap()
         tiles = []
         footholds = []
-        mapLR = []
+        ladders = []
+        backTiles = []
+        objects = []
         
         super.init()
         
@@ -63,37 +67,39 @@ class Map : NSObject, NSXMLParserDelegate {
                     if let attribute:String = attributeDict["name"], value:String = attributeDict["value"]{
                         switch attribute{
                         case "bS":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).bS = value
                         case "no":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).no = Int(value)
                         case "x":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).x = Int(value)
                         case "y":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).y = Int(value)
                         case "rx":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).rx = Int(value)
                         case "ry":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).ry = Int(value)
                         case "type":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).type = Int(value)
                         case "cx":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).cx = Int(value)
                         case "cy":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).cy = Int(value)
                         case "a":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).a = Int(value)
                         case "front":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).front = Int(value)
                         case "ani":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).ani = Int(value)
                         case "f":
-                            print("attribute: \(attribute) - \(value)")
+                            (currentItemInstance as! MapBackTile).f = Int(value)
                         default:
                             print("Unknown attribute: \(attributeDict)")
                         }
                     }
                 }else{
                     currentItemID = attributeDict["name"]
+                    currentItemInstance = MapBackTile(ID: Int(currentItemID!)!)
+                    backTiles += [currentItemInstance as! MapBackTile]
                 }
                 
             }
@@ -186,7 +192,7 @@ class Map : NSObject, NSXMLParserDelegate {
                 }else{
                     currentItemID = attributeDict["name"]
                     currentItemInstance = MapLR(ID:Int(currentItemID!)!)
-                    mapLR += [currentItemInstance as! MapLR]
+                    ladders += [currentItemInstance as! MapLR]
                 }
             }
             else if currentSection == "miniMap" {
@@ -280,7 +286,6 @@ class Map : NSObject, NSXMLParserDelegate {
                                 (currentItemInstance as! MapTile).y = Int(value)
                             case "u":
                                 (currentItemInstance as! MapTile).u = value
-                                (currentItemInstance as! MapTile).setDesign(value)
                             case "no":
                                 (currentItemInstance as! MapTile).no = Int(value)
                                 (currentItemInstance as! MapTile).setDesignSize()
@@ -292,23 +297,23 @@ class Map : NSObject, NSXMLParserDelegate {
                         }else if currentItemID == "obj" {
                             switch attribute {
                             case "oS":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).oS = value
                             case "l0":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).l0 = value
                             case "l1":
-                                print("attribute: \(attribute) - \(value)")
+                               (currentItemInstance as! MapObject).l1 = value
                             case "l2":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).l2 = value
                             case "x":
-                                print("attribute: \(attribute) - \(value)")
+                               (currentItemInstance as! MapObject).x = Int(value)
                             case "y":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).y = Int(value)
                             case "z":
-                                print("attribute: \(attribute) - \(value)")
+                               (currentItemInstance as! MapObject).z = Int(value)
                             case "f":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).f = Int(value)
                             case "zM":
-                                print("attribute: \(attribute) - \(value)")
+                                (currentItemInstance as! MapObject).zM = Int(value)
                             default:
                                 print("Unknown attribute: \(attributeDict)")
                             }
@@ -327,6 +332,8 @@ class Map : NSObject, NSXMLParserDelegate {
                             tiles += [currentItemInstance as! MapTile]
                         case "obj":
                             currentSubItemID = attribute
+                            currentItemInstance = MapObject(ID:Int(currentSubItemID!)!)
+                            objects += [currentItemInstance as! MapObject]
                         default:
                             print("Unknown attribute: \(attributeDict)")
                         }
@@ -394,7 +401,7 @@ class Map : NSObject, NSXMLParserDelegate {
         }
         
         if closestDistance < 15 {
-            let topParentSize = closestTitle?.design?.size
+            let topParentSize = closestTitle?.design.size
             
             return (x:closestTitle!.x!, y:((closestTitle?.y!)!+topParentSize!.height))
         }
